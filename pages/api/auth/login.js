@@ -42,17 +42,16 @@ const LoginComponent = async (req, res) => {
 
     console.log("**** user ****", user);
 
-    // const isMatch = await compare(password, user?.Password);
-    const isMatch = await compare("12345", "12345");
+    const isMatch = await compare(password, user?.password);
     console.log("isMatch = ", isMatch);
-    console.log("**** password, user?.Password ****");
+    console.log("**** password, user?.password ****");
 
-    console.log(password, user?.Password);
+    console.log(password, user?.password);
 
     if (!isMatch) {
       return res
         .status(401)
-        .json({ success: false, message: "Incorrect Password" });
+        .json({ success: false, message: "Incorrect password" });
     }
 
     const token = jwt.sign(

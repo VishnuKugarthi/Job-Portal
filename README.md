@@ -42,7 +42,7 @@ To run this project, you will need to add the following environment variables to
 
 `DB_URI` = Your mongoDB URL
 
-`JWT_SECRET` = Your custom JWT_SECRET key
+`JWT_SECRET` =  Run `openssl rand -hex 32` in terminal (Your custom JWT_SECRET key)
 
 `NEXT_PUBLIC_API_BASE_URL` =  Base URL for localhost  => http://localhost:3000
 
