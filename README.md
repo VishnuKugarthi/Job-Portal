@@ -42,7 +42,7 @@ To run this project, you will need to add the following environment variables to
 
 `DB_URI` = Your mongoDB URL
 
-`JWT_SECREAT` = Your custom JWT_SECREAT key
+`JWT_SECRET` = Your custom JWT_SECRET key
 
 `NEXT_PUBLIC_API_BASE_URL` =  Base URL for localhost  => http://localhost:3000
 
