@@ -1,11 +1,12 @@
 import NavBar from "@/components/NavBar";
 import Select from "react-select";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { post_job } from "@/Services/job";
 import { useRouter } from "next/router";
+import PaymentOverlay from "../payment/page";
 
 export default function PostAJob() {
   const user = useSelector((state) => state.User.userData);
@@ -92,15 +93,15 @@ export default function PostAJob() {
       return toast.error("Please Login First");
     }
 
-    const res = await post_job(formData);
-    if (res.success) {
-      toast.success(res.message);
-      setTimeout(() => {
-        router.push("/frontend/displayJobs");
-      }, 1000);
-    } else {
-      toast.error(res.message);
-    }
+    // const res = await post_job(formData);
+    // if (res.success) {
+    //   toast.success(res.message);
+    //   setTimeout(() => {
+    //     router.push("/frontend/displayJobs");
+    //   }, 1000);
+    // } else {
+    //   toast.error(res.message);
+    // }
   };
 
   const options = [
@@ -113,6 +114,7 @@ export default function PostAJob() {
   return (
     <>
       <NavBar />
+      {/* // <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script> */}
       <div className="w-full  py-20 flex items-center  justify-center flex-col">
         <h1 className="text-xl mt-4 uppercase tracking-widest border-b-2 border-b-indigo-600 py-2 font-semibold mb-8 md:text-2xl lg:text-4xl">
           Enter Job Details
@@ -293,6 +295,58 @@ export default function PostAJob() {
             {error.job_deadline && (
               <p className="text-sm text-red-500">{error.job_deadline}</p>
             )}
+          </div>
+          <div className="my-7">
+            <fieldset>
+              <legend>Published status</legend>
+
+              <input
+                id="draft"
+                className="peer/draft mr-1"
+                type="radio"
+                name="status"
+                checked
+              />
+              <label
+                for="draft"
+                className="peer-checked/draft:text-sky-500 mr-4"
+              >
+                $99
+              </label>
+
+              <input
+                id="published"
+                className="peer/published mr-1"
+                type="radio"
+                name="status"
+              />
+              <label
+                for="published"
+                className="peer-checked/published:text-sky-500"
+              >
+                $129
+              </label>
+
+              <div className="hidden peer-checked/draft:block">
+                Drafts are only visible to administrators.
+              </div>
+              <div className="hidden peer-checked/published:block">
+                Your post will be publicly visible on your site.
+              </div>
+            </fieldset>
+
+            {/* -------------------------- lemonsqueezy -------------------------- */}
+            <a
+              href="https://dassets.lemonsqueezy.com/buy/fc06ef7f-a9af-4519-94b5-aff96138c988?embed=1"
+              class="lemonsqueezy-button"
+            >
+              Buy Single Job Posting - test
+            </a>
+            <PaymentOverlay formData={formData} />
+            {/* <script
+              src="https://assets.lemonsqueezy.com/lemon.js"
+              defer
+            ></script> */}
           </div>
           <button
             type="submit"
