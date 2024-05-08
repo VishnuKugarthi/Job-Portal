@@ -58,7 +58,7 @@ export default function Home() {
           content="Find Your Dream Job | Job Portal Name"
         />
         <meta name="language" content="en-US" />
-        <LoadLemonJs />
+        {/* <LoadLemonJs /> */}
       </Head>
 
       {isLoading ? (

@@ -5,14 +5,23 @@ import { useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { post_job } from "@/Services/job";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 import PaymentOverlay from "../payment/loadLemonJs";
 import LoadLemonJs from "../payment/loadLemonJs";
 import SelectItemForPayment from "../payment/page";
 
 export default function PostAJob() {
   const user = useSelector((state) => state.User.userData);
-  // const router = useRouter();
+  const router = useRouter();
+
+  const userId = user?._id;
+
+  useEffect(() => {
+    if (!userId || !Cookies.get("token")) {
+      router.push("/auth/login");
+    }
+  }, [user, userId, Cookies]);
 
   const [formData, setFormData] = useState({
     user: user?._id,
@@ -137,6 +146,9 @@ export default function PostAJob() {
     { value: "internship", label: "Internship" },
     { value: "contract", label: "Contract" },
   ];
+
+  console.log("formData");
+  console.log(formData);
 
   return (
     <>

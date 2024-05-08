@@ -1,4 +1,4 @@
-// import Script from "next/script";
+import Script from "next/script";
 import { post_job } from "@/Services/job";
 import React, { useEffect } from "react";
 import { toast } from "react-toastify";
@@ -6,7 +6,8 @@ import { useRouter } from "next/router";
 
 export default function SelectItemForPayment({ formData }) {
   const router = useRouter();
-  useEffect(() => {
+  function lemonLoaded() {
+    // useEffect(() => {
     window.createLemonSqueezy();
 
     LemonSqueezy.Setup({
@@ -29,9 +30,15 @@ export default function SelectItemForPayment({ formData }) {
         }
       },
     });
-  }, []);
+    // }, []);
+  }
   return (
     <>
+      {/* <Script src="https://assets.lemonsqueezy.com/lemon.js" defer></Script> */}
+      <Script
+        src="https://assets.lemonsqueezy.com/lemon.js"
+        onLoad={lemonLoaded}
+      ></Script>
       <a
         href="https://dassets.lemonsqueezy.com/buy/fc06ef7f-a9af-4519-94b5-aff96138c988?embed=1"
         class="lemonsqueezy-button"
