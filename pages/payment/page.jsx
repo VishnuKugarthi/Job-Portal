@@ -1,13 +1,14 @@
+// import Script from "next/script";
 import { post_job } from "@/Services/job";
-import Script from "next/script";
-import React, { useState, useEffect } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import React, { useEffect } from "react";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
-export default function PaymentOverlay({ formData }) {
-  function lemonLoaded() {
+export default function SelectItemForPayment({ formData }) {
+  const router = useRouter();
+  useEffect(() => {
     window.createLemonSqueezy();
 
-    // async function PostJobAfterPayment(){
     LemonSqueezy.Setup({
       eventHandler: async (event) => {
         // Do whatever you want with this event data
@@ -28,16 +29,15 @@ export default function PaymentOverlay({ formData }) {
         }
       },
     });
-
-    // }
-  }
+  }, []);
   return (
     <>
-      <Script
-        // src="https://app.lemonsqueezy.com/js/lemon.js"
-        src="https://assets.lemonsqueezy.com/lemon.js"
-        onLoad={lemonLoaded}
-      ></Script>
+      <a
+        href="https://dassets.lemonsqueezy.com/buy/fc06ef7f-a9af-4519-94b5-aff96138c988?embed=1"
+        class="lemonsqueezy-button"
+      >
+        Buy Single Job Posting - test
+      </a>
     </>
   );
 }

@@ -5,12 +5,14 @@ import { useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { post_job } from "@/Services/job";
-import { useRouter } from "next/router";
-import PaymentOverlay from "../payment/page";
+// import { useRouter } from "next/router";
+import PaymentOverlay from "../payment/loadLemonJs";
+import LoadLemonJs from "../payment/loadLemonJs";
+import SelectItemForPayment from "../payment/page";
 
 export default function PostAJob() {
   const user = useSelector((state) => state.User.userData);
-  const router = useRouter();
+  // const router = useRouter();
 
   const [formData, setFormData] = useState({
     user: user?._id,
@@ -38,6 +40,31 @@ export default function PostAJob() {
     job_vacancy: "",
     job_deadline: "",
   });
+
+  // useEffect(() => {
+  //   window.createLemonSqueezy();
+
+  //   LemonSqueezy.Setup({
+  //     eventHandler: async (event) => {
+  //       // Do whatever you want with this event data
+
+  //       console.log("LemonSqueezy event");
+  //       console.log(event);
+
+  //       if (event.event === "Checkout.Success") {
+  //         const res = await post_job(formData);
+  //         if (res.success) {
+  //           toast.success(res.message);
+  //           setTimeout(() => {
+  //             router.push("/frontend/displayJobs");
+  //           }, 1000);
+  //         } else {
+  //           toast.error(res.message);
+  //         }
+  //       }
+  //     },
+  //   });
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -114,7 +141,7 @@ export default function PostAJob() {
   return (
     <>
       <NavBar />
-      {/* // <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script> */}
+      <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
       <div className="w-full  py-20 flex items-center  justify-center flex-col">
         <h1 className="text-xl mt-4 uppercase tracking-widest border-b-2 border-b-indigo-600 py-2 font-semibold mb-8 md:text-2xl lg:text-4xl">
           Enter Job Details
@@ -336,17 +363,7 @@ export default function PostAJob() {
             </fieldset>
 
             {/* -------------------------- lemonsqueezy -------------------------- */}
-            <a
-              href="https://dassets.lemonsqueezy.com/buy/fc06ef7f-a9af-4519-94b5-aff96138c988?embed=1"
-              class="lemonsqueezy-button"
-            >
-              Buy Single Job Posting - test
-            </a>
-            <PaymentOverlay formData={formData} />
-            {/* <script
-              src="https://assets.lemonsqueezy.com/lemon.js"
-              defer
-            ></script> */}
+            <SelectItemForPayment formData={formData} />
           </div>
           <button
             type="submit"
