@@ -15,13 +15,19 @@ export default function PostAJob() {
   const user = useSelector((state) => state.User.userData);
   const router = useRouter();
 
-  const userId = user?._id;
+  console.log(`user?._id = ${JSON.stringify(user)}, ${user?.email}`);
 
-  useEffect(() => {
-    if (!userId || !Cookies.get("token")) {
-      router.push("/auth/login");
-    }
-  }, [user, userId, Cookies]);
+  // const userId = user?._id;
+
+  // useEffect(() => {
+  //   console.log("EFFECT");
+  //   console.log(userId, Cookies.get("token"));
+  //   console.log(!userId || !Cookies.get("token"));
+
+  //   if (!userId || !Cookies.get("token")) {
+  //     router.push("/auth/login");
+  //   }
+  // }, [user, userId, Cookies]);
 
   const [formData, setFormData] = useState({
     user: user?._id,
@@ -153,7 +159,7 @@ export default function PostAJob() {
   return (
     <>
       <NavBar />
-      <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+      {/* <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script> */}
       <div className="w-full  py-20 flex items-center  justify-center flex-col">
         <h1 className="text-xl mt-4 uppercase tracking-widest border-b-2 border-b-indigo-600 py-2 font-semibold mb-8 md:text-2xl lg:text-4xl">
           Enter Job Details
