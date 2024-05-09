@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { setUserData } from "@/Utils/UserSlice";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { signOut } from "next-auth/react";
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -133,7 +134,7 @@ export default function NavBar() {
           {user !== null ? (
             <>
               <BiLogOut
-                onClick={handleLogout}
+                onClick={() => signOut()}
                 className=" cursor-pointer text-3xl hover:text-red-500 transition-all duration-700"
               />
               <p className="text-lg px-4 font-semibold">{user?.name}</p>

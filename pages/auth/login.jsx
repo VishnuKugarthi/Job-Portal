@@ -9,50 +9,28 @@ import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { setUserData } from "@/Utils/UserSlice";
 import NavBar from "@/components/NavBar";
-import {
-  BiLogoGoogle,
-  BiLogoGooglePlusCircle,
-  BiLogoGoogleCloud,
-  BiLogoGooglePlus,
-} from "react-icons/bi";
+import { BiLogoGoogle } from "react-icons/bi";
 
 export default function Login() {
   const dispatch = useDispatch();
   const { data: session } = useSession();
 
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [error, setError] = useState({ email: "", password: "" });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!formData.email) {
-      setError({ ...error, email: "Email Field is Required" });
-      return;
-    }
-    if (!formData.password) {
-      setError({ ...error, password: "Password Field is required" });
-      return;
-    }
-
-    const res = await login_me(formData);
-    if (res.success) {
-      Cookies.set("token", res?.finalData?.token);
-      localStorage.setItem("user", JSON.stringify(res?.finalData?.user));
-      dispatch(
-        setUserData(
-          localStorage.getItem("user")
-            ? JSON.parse(localStorage.getItem("user"))
-            : null
-        )
-      );
-      Router.push("/");
-    } else {
-      toast.error(res.message);
-    }
-  };
+  if (session) {
+    localStorage.setItem("user", JSON.stringify(session?.user));
+    dispatch(
+      setUserData(
+        localStorage.getItem("user")
+          ? JSON.parse(localStorage.getItem("user"))
+          : null
+      )
+    );
+    Router.push("/");
+  } else {
+    toast.error("Sign in error. Please try again later.");
+  }
 
   useEffect(() => {
-    if (Cookies.get("token")) {
+    if (localStorage.getItem("user")) {
       Router.push("/");
     }
   }, []);
@@ -60,7 +38,7 @@ export default function Login() {
   return (
     <>
       <NavBar />
-      <div className="w-full h-screen bg-indigo-600">
+      <div className="w-full h-screen">
         <div className="flex flex-col items-center  text-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
           <div className="w-full bg-white text-black rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -75,7 +53,7 @@ export default function Login() {
                         <p> {session.user.image}</p>
                         <p> {session.expires}</p> */}
                     <button
-                      class="cursor-pointer text-lg hover:text-red-500 transition-all duration-500 w-full bg-white text-gray-700 hover:bg-gray-100 shadow-md border border-gray-300 py-2 px-4 flex items-center justify-center rounded-md text-center"
+                      class="mt-8 cursor-pointer text-lg hover:text-red-500 transition-all duration-500 w-full bg-white text-gray-700 hover:bg-gray-100 shadow-md border border-gray-300 py-2 px-4 flex items-center justify-center rounded-md text-center"
                       onClick={() => signOut()}
                     >
                       <span class="ml-2">Sign out</span>
@@ -87,7 +65,7 @@ export default function Login() {
                   // </button>
 
                   <button
-                    class="cursor-pointer text-lg hover:text-green-700 transition-all duration-500 w-full bg-white text-gray-700 hover:bg-gray-100 shadow-md border border-gray-300 py-2 px-4 flex items-center justify-center rounded-md text-center"
+                    class="cursor-pointer text-lg hover:text-green-700 transition-all duration-500 w-full bg-indigo-600 text-gray-100 hover:bg-gray-100 shadow-md border border-gray-300 py-2 px-4 flex items-center justify-center rounded-md text-center"
                     onClick={() => signIn("google")}
                   >
                     <BiLogoGoogle className="text-3xl" />
@@ -103,26 +81,3 @@ export default function Login() {
     </>
   );
 }
-
-// pages/index.js
-// import { signIn, signOut, useSession } from "next-auth/react";
-
-// export default function Login() {
-//   const { data: session } = useSession();
-
-//   return (
-//     <div>
-//       {session ? (
-//         <>
-//           <p>Welcome, {session.user.name}!</p>
-//           <p>Welcome, {session.user.email}</p>
-//           <p>Welcome, {session.user.image}</p>
-//           <p>Welcome, {session.expires}</p>
-//           <button onClick={() => signOut()}>Sign out</button>
-//         </>
-//       ) : (
-//         <button onClick={() => signIn("google")}>Sign in with Google</button>
-//       )}
-//     </div>
-//   );
-// }
