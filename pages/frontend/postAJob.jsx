@@ -188,40 +188,6 @@ export default function PostAJob() {
             )}
           </div>
           <div className="w-full mb-4 flex flex-col items-start justify-center">
-            <label htmlFor="salary" className="mb-1 text-base font-semibold">
-              Salary offered :
-            </label>
-            <input
-              onChange={(e) =>
-                setFormData({ ...formData, salary: e.target.value })
-              }
-              type="number"
-              id="salary"
-              className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
-              placeholder="enter salary offered for this job"
-            />
-            {error.salary && (
-              <p className="text-sm text-red-500">{error.salary}</p>
-            )}
-          </div>
-          <div className="w-full mb-4 flex flex-col items-start justify-center">
-            <label htmlFor="email" className="mb-1 text-base font-semibold">
-              Email :
-            </label>
-            <input
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
-              type="email"
-              id="email"
-              className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
-              placeholder="enter contact email for this job"
-            />
-            {error.email && (
-              <p className="text-sm text-red-500">{error.email}</p>
-            )}
-          </div>
-          <div className="w-full mb-4 flex flex-col items-start justify-center">
             <label htmlFor="company" className="mb-1 text-base font-semibold">
               Company name :
             </label>
@@ -257,6 +223,23 @@ export default function PostAJob() {
             />
             {error.job_description && (
               <p className="text-sm text-red-500">{error.job_description}</p>
+            )}
+          </div>
+          <div className="w-full mb-4 flex flex-col items-start justify-center">
+            <label htmlFor="salary" className="mb-1 text-base font-semibold">
+              Salary offered :
+            </label>
+            <input
+              onChange={(e) =>
+                setFormData({ ...formData, salary: e.target.value })
+              }
+              type="number"
+              id="salary"
+              className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
+              placeholder="enter salary offered for the job"
+            />
+            {error.salary && (
+              <p className="text-sm text-red-500">{error.salary}</p>
             )}
           </div>
           <div className="w-full flex flex-col items-start justify-center">
@@ -311,15 +294,32 @@ export default function PostAJob() {
               type="text"
               id="jobExperience"
               className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
-              placeholder="enter number of years of experience required for this job"
+              placeholder="enter number of years of experience required for the job"
             />
             {error.job_experience && (
               <p className="text-sm text-red-500">{error.job_experience}</p>
             )}
           </div>
           <div className="w-full mb-4 flex flex-col items-start justify-center">
+            <label htmlFor="email" className="mb-1 text-base font-semibold">
+              Email :
+            </label>
+            <input
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              type="email"
+              id="email"
+              className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
+              placeholder="enter contact email for the job"
+            />
+            {error.email && (
+              <p className="text-sm text-red-500">{error.email}</p>
+            )}
+          </div>
+          <div className="w-full mb-4 flex flex-col items-start justify-center">
             <label htmlFor="jobva" className="mb-1 text-base font-semibold">
-              Job Vacancy :
+              Number of vacancies available :
             </label>
             <input
               onChange={(e) =>
@@ -328,7 +328,7 @@ export default function PostAJob() {
               type="number"
               id="jobva"
               className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
-              placeholder="enter number of available vacancies for this job"
+              placeholder="enter number of vacancies available for the job"
             />
             {error.job_vacancy && (
               <p className="text-sm text-red-500">{error.job_vacancy}</p>
