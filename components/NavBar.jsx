@@ -134,6 +134,7 @@ export default function NavBar() {
           {user !== null ? (
             <>
               <BiLogOut
+                title="Sign out"
                 onClick={() => signOut()}
                 className=" cursor-pointer text-3xl hover:text-red-500 transition-all duration-700"
               />
@@ -228,8 +229,9 @@ export default function NavBar() {
               {user !== null ? (
                 <>
                   <BiLogOut
-                    onClick={handleLogout}
-                    className=" cursor-pointer text-3xl hover:text-red-500 transition-all duration-700"
+                    title="Sign out"
+                    onClick={() => signOut()}
+                    className="cursor-pointer text-3xl hover:text-red-500 transition-all duration-700"
                   />
                   <p className="text-lg px-4 font-semibold">{user?.name}</p>
                 </>

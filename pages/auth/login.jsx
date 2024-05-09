@@ -48,10 +48,6 @@ export default function Login() {
               <div>
                 {session ? (
                   <>
-                    <p>Welcome, {session.user.name}!</p>
-                    {/* <p>{session.user.email}</p>
-                        <p> {session.user.image}</p>
-                        <p> {session.expires}</p> */}
                     <button
                       class="mt-8 cursor-pointer text-lg hover:text-red-500 transition-all duration-500 w-full bg-white text-gray-700 hover:bg-gray-100 shadow-md border border-gray-300 py-2 px-4 flex items-center justify-center rounded-md text-center"
                       onClick={() => signOut()}
@@ -60,10 +56,6 @@ export default function Login() {
                     </button>
                   </>
                 ) : (
-                  // <button onClick={() => signIn("google")}>
-                  //   Sign in with Google
-                  // </button>
-
                   <button
                     class="cursor-pointer text-lg hover:text-green-700 transition-all duration-500 w-full bg-indigo-600 text-gray-100 hover:bg-gray-100 shadow-md border border-gray-300 py-2 px-4 flex items-center justify-center rounded-md text-center"
                     onClick={() => signIn("google")}
