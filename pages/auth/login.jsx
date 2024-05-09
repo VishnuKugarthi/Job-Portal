@@ -15,6 +15,12 @@ export default function Login() {
   const dispatch = useDispatch();
   const { data: session } = useSession();
 
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      Router.push("/");
+    }
+  }, []);
+
   if (session) {
     localStorage.setItem("user", JSON.stringify(session?.user));
     dispatch(
@@ -25,15 +31,7 @@ export default function Login() {
       )
     );
     Router.push("/");
-  } else {
-    toast.error("Sign in error. Please try again later.");
   }
-
-  useEffect(() => {
-    if (localStorage.getItem("user")) {
-      Router.push("/");
-    }
-  }, []);
 
   return (
     <>
@@ -49,19 +47,19 @@ export default function Login() {
                 {session ? (
                   <>
                     <button
-                      class="mt-8 cursor-pointer text-lg hover:text-red-500 transition-all duration-500 w-full bg-white text-gray-700 hover:bg-gray-100 shadow-md border border-gray-300 py-2 px-4 flex items-center justify-center rounded-md text-center"
+                      className="mt-8 cursor-pointer text-lg hover:text-red-500 transition-all duration-500 w-full bg-white text-gray-700 hover:bg-gray-100 shadow-md border border-gray-300 py-2 px-4 flex items-center justify-center rounded-md text-center"
                       onClick={() => signOut()}
                     >
-                      <span class="ml-2">Sign out</span>
+                      <span className="ml-2">Sign out</span>
                     </button>
                   </>
                 ) : (
                   <button
-                    class="cursor-pointer text-lg hover:text-green-700 transition-all duration-500 w-full bg-indigo-600 text-gray-100 hover:bg-gray-100 shadow-md border border-gray-300 py-2 px-4 flex items-center justify-center rounded-md text-center"
+                    className="cursor-pointer text-lg hover:text-green-700 transition-all duration-500 w-full bg-indigo-600 text-gray-100 hover:bg-gray-100 shadow-md border border-gray-300 py-2 px-4 flex items-center justify-center rounded-md text-center"
                     onClick={() => signIn("google")}
                   >
                     <BiLogoGoogle className="text-3xl" />
-                    <span class="ml-2">Sign in with Google</span>
+                    <span className="ml-2">Sign in with Google</span>
                   </button>
                 )}
               </div>

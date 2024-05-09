@@ -1,4 +1,5 @@
 import NavBar from "@/components/NavBar";
+import Link from "next/link";
 import Select from "react-select";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -35,6 +36,7 @@ export default function PostAJob() {
     salary: 0,
     email: "",
     company_name: "",
+    job_location: "",
     job_description: "",
     job_mode: "",
     job_type: "",
@@ -47,12 +49,19 @@ export default function PostAJob() {
     salary: "",
     email: "",
     company_name: "",
+    job_location: "",
     job_description: "",
     job_mode: "",
     job_type: "",
     job_experience: "",
     job_vacancy: "",
   });
+
+  // useEffect(() => {
+  // if (formData.user == null) {
+  //   router.push("/auth/login");
+  // }
+  // }, [user]);
 
   // useEffect(() => {
   //   window.createLemonSqueezy();
@@ -83,11 +92,11 @@ export default function PostAJob() {
     e.preventDefault();
 
     if (formData.user == null) {
-      return toast.error("Please Login First");
+      return toast.error("Please Login first");
     }
 
-    if (!formData.title) {
-      setError({ ...error, title: "Job title field is required" });
+    if (!formData.job_title) {
+      setError({ ...error, job_title: "Job title field is required" });
       return;
     }
 
@@ -101,25 +110,34 @@ export default function PostAJob() {
       return;
     }
 
-    if (!formData.company) {
+    if (!formData.company_name) {
       setError({ ...error, company_name: "Company anme field is required" });
       return;
     }
-    if (!formData.description) {
+
+    if (!formData.job_location) {
+      setError({ ...error, job_location: "Company anme field is required" });
+      return;
+    }
+
+    if (!formData.job_description) {
       setError({
         ...error,
         job_description: "Job description field is required",
       });
       return;
     }
+
     if (!formData.job_mode) {
       setError({ ...error, job_mode: "Job category field is required" });
       return;
     }
+
     if (!formData.job_type) {
       setError({ ...error, job_type: "Job type field is required" });
       return;
     }
+
     if (!formData.job_experience) {
       setError({
         ...error,
@@ -127,6 +145,7 @@ export default function PostAJob() {
       });
       return;
     }
+
     if (!formData.job_vacancy) {
       setError({ ...error, job_vacancy: "Job vacancy field is required" });
       return;
@@ -157,6 +176,19 @@ export default function PostAJob() {
 
   console.log("formData");
   console.log(formData);
+
+  if (formData.user == null) {
+    return (
+      <>
+        <NavBar />
+        <div className="w-full  py-20 flex items-center  justify-center flex-col">
+          <div className="my-10">
+            Please <Link href={"/auth/login"}>login</Link> first
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -205,11 +237,28 @@ export default function PostAJob() {
             )}
           </div>
           <div className="w-full mb-4 flex flex-col items-start justify-center">
+            <label htmlFor="company" className="mb-1 text-base font-semibold">
+              Location :
+            </label>
+            <input
+              onChange={(e) =>
+                setFormData({ ...formData, job_location: e.target.value })
+              }
+              type="text"
+              id=" job_location"
+              className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
+              placeholder="enter location of the job"
+            />
+            {error.job_location && (
+              <p className="text-sm text-red-500">{error.job_location}</p>
+            )}
+          </div>
+          <div className="w-full mb-4 flex flex-col items-start justify-center">
             <label
               htmlFor="job_description"
               className="mb-1 text-base font-semibold"
             >
-              Job description :
+              Description :
             </label>
             <textarea
               onChange={(e) =>
@@ -247,7 +296,7 @@ export default function PostAJob() {
               htmlFor="jobCategory"
               className="mb-1 text-base font-semibold"
             >
-              Job mode :
+              Mode :
             </label>
           </div>
           <div className="mb-5">
@@ -266,7 +315,7 @@ export default function PostAJob() {
               htmlFor="jobCategory"
               className="mb-1 text-base font-semibold"
             >
-              Job type :
+              Type :
             </label>
           </div>
           <div className="mb-5">
@@ -335,9 +384,9 @@ export default function PostAJob() {
             )}
           </div>
 
-          <div className="my-7">
+          {/* <div className="my-7">
             <fieldset>
-              <legend>Published status</legend>
+              <legend>Select </legend>
 
               <input
                 id="draft"
@@ -374,12 +423,12 @@ export default function PostAJob() {
               </div>
             </fieldset>
 
-            {/* -------------------------- lemonsqueezy -------------------------- */}
-            <SelectItemForPayment formData={formData} />
-          </div>
+          </div> */}
+          {/* -------------------------- lemonsqueezy -------------------------- */}
+          {/* <SelectItemForPayment formData={formData} /> */}
           <button
             type="submit"
-            className="w-full py-2 rounded bg-indigo-600 text-white font-semibold"
+            className="w-full my-5 py-2 rounded bg-indigo-600 text-white font-semibold"
           >
             Submit
           </button>

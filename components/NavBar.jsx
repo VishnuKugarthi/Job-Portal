@@ -103,7 +103,7 @@ export default function NavBar() {
             href={"/frontend/postAJob"}
             className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase"
           >
-            Post Jobs
+            Post a Job
           </Link>
           <Link
             href={"/frontend/displayJobs"}
