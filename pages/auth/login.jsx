@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { signIn, signOut, useSession } from "next-auth/react";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import Router from "next/router";
@@ -8,9 +9,16 @@ import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { setUserData } from "@/Utils/UserSlice";
 import NavBar from "@/components/NavBar";
+import {
+  BiLogoGoogle,
+  BiLogoGooglePlusCircle,
+  BiLogoGoogleCloud,
+  BiLogoGooglePlus,
+} from "react-icons/bi";
 
 export default function Login() {
   const dispatch = useDispatch();
+  const { data: session } = useSession();
 
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState({ email: "", password: "" });
@@ -59,98 +67,34 @@ export default function Login() {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                 Sign in to your account
               </h1>
-              <form
-                onSubmit={handleSubmit}
-                className="space-y-4 md:space-y-6"
-                action="#"
-              >
-                <div className="text-left">
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
+              <div>
+                {session ? (
+                  <>
+                    <p>Welcome, {session.user.name}!</p>
+                    {/* <p>{session.user.email}</p>
+                        <p> {session.user.image}</p>
+                        <p> {session.expires}</p> */}
+                    <button
+                      class="cursor-pointer text-lg hover:text-red-500 transition-all duration-500 w-full bg-white text-gray-700 hover:bg-gray-100 shadow-md border border-gray-300 py-2 px-4 flex items-center justify-center rounded-md text-center"
+                      onClick={() => signOut()}
+                    >
+                      <span class="ml-2">Sign out</span>
+                    </button>
+                  </>
+                ) : (
+                  // <button onClick={() => signIn("google")}>
+                  //   Sign in with Google
+                  // </button>
+
+                  <button
+                    class="cursor-pointer text-lg hover:text-green-700 transition-all duration-500 w-full bg-white text-gray-700 hover:bg-gray-100 shadow-md border border-gray-300 py-2 px-4 flex items-center justify-center rounded-md text-center"
+                    onClick={() => signIn("google")}
                   >
-                    Your email
-                  </label>
-                  <input
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 "
-                    placeholder="name@company.com"
-                    required=""
-                  />
-                  {error.email && (
-                    <p className="text-sm text-red-500">{error.email}</p>
-                  )}
-                </div>
-                <div className="text-left">
-                  <label
-                    htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
-                  >
-                    Password
-                  </label>
-                  <input
-                    onChange={(e) =>
-                      setFormData({ ...formData, password: e.target.value })
-                    }
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5"
-                    required=""
-                  />
-                  {error.password && (
-                    <p className="text-sm text-red-500">{error.password}</p>
-                  )}
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-start">
-                    <div className="flex items-center h-5">
-                      <input
-                        id="remember"
-                        aria-describedby="remember"
-                        type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300   dark:focus:ring-indigo-600 "
-                        required=""
-                      />
-                    </div>
-                    <div className="ml-3 text-sm">
-                      <label
-                        htmlFor="remember"
-                        className="text-gray-500 dark:text-gray-300"
-                      >
-                        Remember me
-                      </label>
-                    </div>
-                  </div>
-                  <Link
-                    href="/auth/forget-password"
-                    className="text-sm font-medium text-indigo-600 hover:underline "
-                  >
-                    Forgot password?
-                  </Link>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                >
-                  Sign in
-                </button>
-                <p className="text-sm font-light ">
-                  Don’t have an account yet?{" "}
-                  <Link
-                    href="/auth/register"
-                    className="font-medium text-indigo-600 hover:underline "
-                  >
-                    Sign up
-                  </Link>
-                </p>
-              </form>
+                    <BiLogoGoogle className="text-3xl" />
+                    <span class="ml-2">Sign in with Google</span>
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -159,3 +103,26 @@ export default function Login() {
     </>
   );
 }
+
+// pages/index.js
+// import { signIn, signOut, useSession } from "next-auth/react";
+
+// export default function Login() {
+//   const { data: session } = useSession();
+
+//   return (
+//     <div>
+//       {session ? (
+//         <>
+//           <p>Welcome, {session.user.name}!</p>
+//           <p>Welcome, {session.user.email}</p>
+//           <p>Welcome, {session.user.image}</p>
+//           <p>Welcome, {session.expires}</p>
+//           <button onClick={() => signOut()}>Sign out</button>
+//         </>
+//       ) : (
+//         <button onClick={() => signIn("google")}>Sign in with Google</button>
+//       )}
+//     </div>
+//   );
+// }

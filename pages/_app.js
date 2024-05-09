@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { store } from "@/Store/store";
 import { Provider } from "react-redux";
+import { SessionProvider } from "next-auth/react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
@@ -27,7 +28,9 @@ export default function App({
   }, [router]);
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <SessionProvider session={pageProps.session}>
+        <Component {...pageProps} />
+      </SessionProvider>
     </Provider>
   );
 }
