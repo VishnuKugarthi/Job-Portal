@@ -31,6 +31,7 @@
   "rules": {
     // Add custom rules here
     "prettier/prettier": "error", // Enforce Prettier formatting
-    "import/no-unused-modules": "warn"
+    "import/no-unused-modules": "warn",
+    "no-unused-vars": "warn"
   }
 }

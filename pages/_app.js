@@ -13,19 +13,19 @@ export default function App({
 }) {
   const router = useRouter();
 
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      localStorage.removeItem("user");
-      Cookies.remove("token");
-    };
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     event.preventDefault();
+  //     localStorage.removeItem("user");
+  //     Cookies.remove("token");
+  //   };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
 
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [router]);
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, [router]);
   return (
     <Provider store={store}>
       <SessionProvider session={pageProps.session}>
