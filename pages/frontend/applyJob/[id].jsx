@@ -91,7 +91,7 @@ export default function ApplyJob() {
         <>
             <NavBar />
             <div className='w-full  py-20 flex items-center  justify-center flex-col'>
-                <h1 className='text-xl mt-4 uppercase tracking-widest border-b-2 border-b-indigo-600 py-2 font-semibold mb-8 md:text-2xl lg:text-4xl'>Enter Your Info</h1>
+                <h1 className='text-xl mt-4 uppercase border-b-2 border-b-indigo-600 py-2 font-semibold mb-8 md:text-2xl lg:text-4xl'>Enter Your Info</h1>
                 <form encType="multipart/form-data" onSubmit={handleSubmit} className="sm:w-1/2 w-full px-4 mx-4  h-full" >
                     <div className='w-full mb-4  flex flex-col items-start justify-center'>
                         <label htmlFor="title" className='mb-1 text-base font-semibold'>Name :</label>

@@ -88,7 +88,7 @@ export default function NavBar() {
         } px-6 h-20 bg-indigo-600 text-white flex items-center justify-between fixed top-0 left-0 z-50`}
       >
         <div className="px-2 h-full flex items-center justify-center">
-          <p className="uppercase font-semibold tracking-widest text-lg">
+          <p className="uppercase font-semibold text-lg">
             JOB-PORTAL
           </p>
         </div>
@@ -144,13 +144,13 @@ export default function NavBar() {
             <>
               <Link
                 href={"/auth/login"}
-                className="px-4 py-2 border border-white rounded uppercase tracking-widest mx-4   transition-all duration-700 hover:bg-white font-semibold text-base hover:text-indigo-600"
+                className="px-4 py-2 border border-white rounded uppercase mx-4   transition-all duration-700 hover:bg-white font-semibold text-base hover:text-indigo-600"
               >
                 Login
               </Link>
               <Link
                 href={"/auth/register"}
-                className="px-4 py-2 border border-white rounded uppercase tracking-widest mx-4   text-indigo-600 bg-white transition-all duration-700 hover:bg-transparent font-semibold text-base hover:text-white"
+                className="px-4 py-2 border border-white rounded uppercase mx-4   text-indigo-600 bg-white transition-all duration-700 hover:bg-transparent font-semibold text-base hover:text-white"
               >
                 REGISTER
               </Link>
@@ -239,13 +239,13 @@ export default function NavBar() {
                 <>
                   <Link
                     href={"/auth/login"}
-                    className="px-4 py-2 border border-white rounded uppercase tracking-widest mx-4   transition-all duration-700 hover:bg-white font-semibold text-base hover:text-indigo-600"
+                    className="px-4 py-2 border border-white rounded uppercase mx-4   transition-all duration-700 hover:bg-white font-semibold text-base hover:text-indigo-600"
                   >
                     Login
                   </Link>
                   <Link
                     href={"/auth/register"}
-                    className="px-4 py-2 border border-white rounded uppercase tracking-widest mx-4   text-indigo-600 bg-white transition-all duration-700 hover:bg-transparent font-semibold text-base hover:text-white"
+                    className="px-4 py-2 border border-white rounded uppercase mx-4   text-indigo-600 bg-white transition-all duration-700 hover:bg-transparent font-semibold text-base hover:text-white"
                   >
                     REGISTER
                   </Link>

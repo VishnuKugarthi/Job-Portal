@@ -141,7 +141,7 @@ export default function JobDetails() {
                                             ) : (
                                                 <div className='flex items-center justify-center  '>
                                                     <BsFillBookmarkCheckFill onClick={handleBookMark} className='text-indigo-600 text-4xl cursor-pointer  mx-2'/>
-                                                    <button onClick={handleApply} className='md:px-6 md:py-3 px-3 py-2 mt-2 md:mt-0 bg-indigo-500 rounded text-base tracking-widest uppercase transition-all duration-700 hover:bg-indigo-900 text-white  '>Apply Position</button>
+                                                    <button onClick={handleApply} className='md:px-6 md:py-3 px-3 py-2 mt-2 md:mt-0 bg-indigo-500 rounded text-base uppercase transition-all duration-700 hover:bg-indigo-900 text-white  '>Apply Position</button>
                                                 </div>
                                             )
                                         }
