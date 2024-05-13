@@ -70,8 +70,9 @@ export default function NavBar() {
   }, [scrolled]);
 
   const handleLogout = async () => {
-    Cookies.remove("token");
-    localStorage.removeItem("user");
+    // Cookies.remove("token");
+    console.log('Logout clicked!!!!');
+    // localStorage.removeItem("user");
     Router.reload();
   };
 
@@ -88,9 +89,7 @@ export default function NavBar() {
         } px-6 h-20 bg-indigo-600 text-white flex items-center justify-between fixed top-0 left-0 z-50`}
       >
         <div className="px-2 h-full flex items-center justify-center">
-          <p className="uppercase font-semibold text-lg">
-            JOB-PORTAL
-          </p>
+          <p className="uppercase font-semibold text-lg">JOB-PORTAL</p>
         </div>
         <div className="px-2 h-full hidden items-center justify-center lg:flex">
           <Link
@@ -135,7 +134,9 @@ export default function NavBar() {
             <>
               <BiLogOut
                 title="Sign out"
-                onClick={() => signOut()}
+                onClick={() => {
+                  signOut(), handleLogout;
+                }}
                 className=" cursor-pointer text-3xl hover:text-red-500 transition-all duration-700"
               />
               <p className="text-lg px-4 font-semibold">{user?.name}</p>
@@ -147,12 +148,6 @@ export default function NavBar() {
                 className="px-4 py-2 border border-white rounded uppercase mx-4   transition-all duration-700 hover:bg-white font-semibold text-base hover:text-indigo-600"
               >
                 Login
-              </Link>
-              <Link
-                href={"/auth/register"}
-                className="px-4 py-2 border border-white rounded uppercase mx-4   text-indigo-600 bg-white transition-all duration-700 hover:bg-transparent font-semibold text-base hover:text-white"
-              >
-                REGISTER
               </Link>
             </>
           )}

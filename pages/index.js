@@ -14,7 +14,7 @@ import LoadLemonJs from "./payment/loadLemonJs";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const token = Cookies.get("token");
+  // const token = Cookies.get("token");
 
   const { data, error, isLoading } = useSWR("/getAllJobs", get_job);
 
@@ -22,14 +22,14 @@ export default function Home() {
     if (data) dispatch(setJobData(data?.data));
   }, [data, dispatch]);
 
-  useEffect(() => {
-    if (token) {
-      dispatch(setUserToken(token));
-    } else {
-      localStorage.removeItem("user");
-      dispatch(setUserData(null));
-    }
-  }, [token, dispatch]);
+  // useEffect(() => {
+  //   if (token) {
+  //     dispatch(setUserToken(token));
+  //   } else {
+  //     localStorage.removeItem("user");
+  //     dispatch(setUserData(null));
+  //   }
+  // }, [token, dispatch]);
 
   return (
     <>

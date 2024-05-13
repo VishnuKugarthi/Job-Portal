@@ -4,12 +4,11 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import Router from "next/router";
-import { login_me } from "@/Services/auth";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
-import { setUserData } from "@/Utils/UserSlice";
-import NavBar from "@/components/NavBar";
 import { BiLogoGoogle } from "react-icons/bi";
+import NavBar from "@/components/NavBar";
+import { setUserData } from "@/Utils/UserSlice";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -23,6 +22,7 @@ export default function Login() {
 
   if (session) {
     localStorage.setItem("user", JSON.stringify(session?.user));
+
     dispatch(
       setUserData(
         localStorage.getItem("user")
