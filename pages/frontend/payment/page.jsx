@@ -4,7 +4,10 @@ import React, { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
-export default function SelectItemForPayment({ formData }) {
+export default function PaymentPage({ formData }) {
+  console.log("formData from post a job page", formData);
+  console.log(formData);
+
   const router = useRouter();
   function lemonLoaded() {
     // useEffect(() => {

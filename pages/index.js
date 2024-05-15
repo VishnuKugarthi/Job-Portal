@@ -10,7 +10,7 @@ import useSWR from "swr";
 import { get_job } from "@/Services/job";
 import { setJobData } from "@/Utils/JobSlice";
 import { InfinitySpin } from "react-loader-spinner";
-import LoadLemonJs from "./payment/loadLemonJs";
+import LoadLemonJs from "./frontend/payment/loadLemonJs";
 
 export default function Home() {
   const dispatch = useDispatch();

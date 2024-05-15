@@ -11,7 +11,7 @@ export default function JobsCard({job , posted}) {
             <div className='mb-4 flex  items-center justify-center py-2 '>
                 <Image width={70} height={70} className="flex rounded-full " src={"https://xsgames.co/randomusers/avatar.php?g=male"} alt="no image" />
                 <div className='flex flex-col mx-2 px-2'>
-                    <h1 className='text-xl md:text-2xl font-semibold'>{job?.user.name}</h1>
+                    <h1 className='text-xl md:text-2xl '>{job?.user.name}</h1>
                     <p className='text-xs sm:text-sm md:text-base text-gray-800'>{job?.company}</p>
                 </div>
             </div>
@@ -19,12 +19,12 @@ export default function JobsCard({job , posted}) {
                 <div className='flex  px-2 py-2 items-center justify-center '>
                     <BsDot className='text-4xl font-extrabold text-indigo-600' />
                     <h1 className='text-lg text-gray-900'>Salary :</h1>
-                    <p className='text-base  font-semibold'>{job?.salary}$ / month</p>
+                    <p className='text-base  '>{job?.salary}$ / month</p>
                 </div>
                 <div className='flex px-2 py-2 items-center  justify-center'>
                     <BsDot className='text-4xl font-extrabold text-indigo-600' />
                     <h1 className='text-lg text-gray-900'>Deadline :</h1>
-                    <p className='text-base  font-semibold'>{new Date(`${job?.job_deadline}`).toLocaleDateString('en-GB')}</p>
+                    <p className='text-base  '>{new Date(`${job?.job_deadline}`).toLocaleDateString('en-GB')}</p>
                 </div>
             </div>
             <div className='mb-4 flex flex-col md:flex-wrap md:flex-row w-full justify-between  items-center '>
@@ -36,10 +36,10 @@ export default function JobsCard({job , posted}) {
                 </div>
                 {
                     posted ? (
-                        <button onClick={() => router.push(`/frontend/detailPostedJob/${job?._id}`)} className='my-2 py-2 px-4  border border-indigo-600   rounded flex items-center justify-center transition-all duration-700 hover:bg-indigo-600 hover:text-white text-indigo-600 font-semibold'>View Applications <AiOutlineArrowRight className='mx-2 text-xl' /></button>
+                        <button onClick={() => router.push(`/frontend/detailPostedJob/${job?._id}`)} className='my-2 py-2 px-4  border border-indigo-600   rounded flex items-center justify-center transition-all duration-700 hover:bg-indigo-600 hover:text-white text-indigo-600 '>View Applications <AiOutlineArrowRight className='mx-2 text-xl' /></button>
                     ) : (
 
-                        <button onClick={() => router.push(`/frontend/jobDetails/${job?._id}`)} className='my-2 py-2 px-4  border border-indigo-600   rounded flex items-center justify-center transition-all duration-700 hover:bg-indigo-600 hover:text-white text-indigo-600 font-semibold'>View Detail <AiOutlineArrowRight className='mx-2 text-xl' /></button>
+                        <button onClick={() => router.push(`/frontend/jobDetails/${job?._id}`)} className='my-2 py-2 px-4  border border-indigo-600   rounded flex items-center justify-center transition-all duration-700 hover:bg-indigo-600 hover:text-white text-indigo-600 '>View Detail <AiOutlineArrowRight className='mx-2 text-xl' /></button>
                     )
                 }
             </div>

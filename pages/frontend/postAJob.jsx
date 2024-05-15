@@ -8,13 +8,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { post_job } from "@/Services/job";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-import PaymentOverlay from "../payment/loadLemonJs";
-import LoadLemonJs from "../payment/loadLemonJs";
-import SelectItemForPayment from "../payment/page";
+import PaymentOverlay from "./payment/loadLemonJs";
+import LoadLemonJs from "./payment/loadLemonJs";
+import SelectItemForPayment from "./payment/page";
+import { boolean } from "joi";
+import PaymentPage from "./payment/page";
 
 export default function PostAJob() {
   const user = useSelector((state) => state.User.userData);
-  const router = useRouter();
+  // const router = useRouter();
 
   console.log(`user?._id = ${JSON.stringify(user)}, ${user?.email}`);
 
@@ -31,7 +33,7 @@ export default function PostAJob() {
   // }, [user, userId, Cookies]);
 
   const [formData, setFormData] = useState({
-    user: user?._id,
+    user: user?.email,
     job_title: "",
     salary: 0,
     email: "",
@@ -43,19 +45,19 @@ export default function PostAJob() {
     job_experience: "",
     job_vacancy: 0,
   });
-  const [error, setError] = useState({
-    user: "",
-    job_title: "",
-    salary: "",
-    email: "",
-    company_name: "",
-    job_location: "",
-    job_description: "",
-    job_mode: "",
-    job_type: "",
-    job_experience: "",
-    job_vacancy: "",
-  });
+  // const [error, setError] = useState({
+  //   user: "",
+  //   job_title: "",
+  //   salary: "",
+  //   email: "",
+  //   company_name: "",
+  //   job_location: "",
+  //   job_description: "",
+  //   job_mode: "",
+  //   job_type: "",
+  //   job_experience: "",
+  //   job_vacancy: "",
+  // });
 
   // useEffect(() => {
   // if (formData.user == null) {
@@ -91,66 +93,6 @@ export default function PostAJob() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (formData.user == null) {
-      return toast.error("Please Login first");
-    }
-
-    if (!formData.job_title) {
-      setError({ ...error, job_title: "Job title field is required" });
-      return;
-    }
-
-    if (!formData.salary) {
-      setError({ ...error, salary: "Salary field is required" });
-      return;
-    }
-
-    if (!formData.email) {
-      setError({ ...error, email: "Email field is Required" });
-      return;
-    }
-
-    if (!formData.company_name) {
-      setError({ ...error, company_name: "Company anme field is required" });
-      return;
-    }
-
-    if (!formData.job_location) {
-      setError({ ...error, job_location: "Company anme field is required" });
-      return;
-    }
-
-    if (!formData.job_description) {
-      setError({
-        ...error,
-        job_description: "Job description field is required",
-      });
-      return;
-    }
-
-    if (!formData.job_mode) {
-      setError({ ...error, job_mode: "Job category field is required" });
-      return;
-    }
-
-    if (!formData.job_type) {
-      setError({ ...error, job_type: "Job type field is required" });
-      return;
-    }
-
-    if (!formData.job_experience) {
-      setError({
-        ...error,
-        job_experience: "Job experience field is required",
-      });
-      return;
-    }
-
-    if (!formData.job_vacancy) {
-      setError({ ...error, job_vacancy: "Job vacancy field is required" });
-      return;
-    }
-
     // const res = await post_job(formData);
     // if (res.success) {
     //   toast.success(res.message);
@@ -177,7 +119,15 @@ export default function PostAJob() {
   console.log("formData");
   console.log(formData);
 
-  if (formData.user == null) {
+  console.log("user?.name");
+  console.log(user?.name);
+
+  if (
+    user?.name == null ||
+    user?.name == "" ||
+    user?.name == undefined ||
+    user?.name == "undefined"
+  ) {
     return (
       <>
         <NavBar />
@@ -194,8 +144,8 @@ export default function PostAJob() {
     <>
       <NavBar />
       {/* <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script> */}
-      <div className="w-full  py-20 flex items-center  justify-center flex-col">
-        <h1 className="text-xl mt-4 uppercase border-b-2 border-b-indigo-600 py-2 font-semibold mb-8 md:text-2xl lg:text-4xl">
+      <div className="w-full py-20 flex items-center justify-center flex-col">
+        <h1 className="text-xl mt-4 capitalize border-b-2 border-b-indigo-600 py-2 mb-8 md:text-xl lg:text-2xl">
           Enter Job Details
         </h1>
         <form
@@ -203,7 +153,7 @@ export default function PostAJob() {
           className="sm:w-1/2 w-full px-4 mx-4  h-full"
         >
           <div className="w-full mb-4 flex flex-col items-start justify-center">
-            <label htmlFor="job_title" className="mb-1 text-base font-semibold">
+            <label htmlFor="job_title" className="mb-1 text-base ">
               Job title :
             </label>
             <input
@@ -214,13 +164,11 @@ export default function PostAJob() {
               id="job_title"
               className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
               placeholder="enter title of the job"
+              required
             />
-            {error.job_title && (
-              <p className="text-sm text-red-500">{error.title}</p>
-            )}
           </div>
           <div className="w-full mb-4 flex flex-col items-start justify-center">
-            <label htmlFor="company" className="mb-1 text-base font-semibold">
+            <label htmlFor="company" className="mb-1 text-base ">
               Company name :
             </label>
             <input
@@ -231,13 +179,11 @@ export default function PostAJob() {
               id="company_name"
               className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
               placeholder="enter company name"
+              required
             />
-            {error.company_name && (
-              <p className="text-sm text-red-500">{error.company_name}</p>
-            )}
           </div>
           <div className="w-full mb-4 flex flex-col items-start justify-center">
-            <label htmlFor="company" className="mb-1 text-base font-semibold">
+            <label htmlFor="company" className="mb-1 text-base ">
               Location :
             </label>
             <input
@@ -245,37 +191,31 @@ export default function PostAJob() {
                 setFormData({ ...formData, job_location: e.target.value })
               }
               type="text"
-              id=" job_location"
+              id="job_location"
               className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
               placeholder="enter location of the job"
+              required
             />
-            {error.job_location && (
-              <p className="text-sm text-red-500">{error.job_location}</p>
-            )}
           </div>
           <div className="w-full mb-4 flex flex-col items-start justify-center">
-            <label
-              htmlFor="job_description"
-              className="mb-1 text-base font-semibold"
-            >
+            <label htmlFor="job_description" className="mb-1 text-base ">
               Description :
             </label>
             <textarea
+              rows={10}
               onChange={(e) =>
                 setFormData({ ...formData, job_description: e.target.value })
               }
               onResize={"none"}
               type="text"
-              id="description"
+              id="job_description"
               className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
               placeholder="enter description of the job"
+              required
             />
-            {error.job_description && (
-              <p className="text-sm text-red-500">{error.job_description}</p>
-            )}
           </div>
           <div className="w-full mb-4 flex flex-col items-start justify-center">
-            <label htmlFor="salary" className="mb-1 text-base font-semibold">
+            <label htmlFor="salary" className="mb-1 text-base ">
               Salary offered :
             </label>
             <input
@@ -286,16 +226,11 @@ export default function PostAJob() {
               id="salary"
               className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
               placeholder="enter salary offered for the job"
+              required
             />
-            {error.salary && (
-              <p className="text-sm text-red-500">{error.salary}</p>
-            )}
           </div>
           <div className="w-full flex flex-col items-start justify-center">
-            <label
-              htmlFor="jobCategory"
-              className="mb-1 text-base font-semibold"
-            >
+            <label htmlFor="job_mode" className="mb-1 text-base ">
               Mode :
             </label>
           </div>
@@ -305,16 +240,11 @@ export default function PostAJob() {
               onChange={(e) => setFormData({ ...formData, job_mode: e.value })}
               placeholder="select job mode"
               options={job_mode_options}
+              required
             />
-            {error.job_mode && (
-              <p className="text-sm text-red-500">{error.job_mode}</p>
-            )}
           </div>
           <div className="w-full flex flex-col items-start justify-center">
-            <label
-              htmlFor="jobCategory"
-              className="mb-1 text-base font-semibold"
-            >
+            <label htmlFor="job_type" className="mb-1 text-base ">
               Type :
             </label>
           </div>
@@ -324,16 +254,11 @@ export default function PostAJob() {
               onChange={(e) => setFormData({ ...formData, job_type: e.value })}
               placeholder="select job type"
               options={job_type_options}
+              required
             />
-            {error.job_type && (
-              <p className="text-sm text-red-500">{error.job_type}</p>
-            )}
           </div>
           <div className="w-full mb-4 flex flex-col items-start justify-center">
-            <label
-              htmlFor="jobExperience"
-              className="mb-1 text-base font-semibold"
-            >
+            <label htmlFor="job_experience" className="mb-1 text-base ">
               Years of experience required :
             </label>
             <input
@@ -341,16 +266,14 @@ export default function PostAJob() {
                 setFormData({ ...formData, job_experience: e.target.value })
               }
               type="text"
-              id="jobExperience"
+              id="job_experience"
               className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
               placeholder="enter number of years of experience required for the job"
+              required
             />
-            {error.job_experience && (
-              <p className="text-sm text-red-500">{error.job_experience}</p>
-            )}
           </div>
           <div className="w-full mb-4 flex flex-col items-start justify-center">
-            <label htmlFor="email" className="mb-1 text-base font-semibold">
+            <label htmlFor="email" className="mb-1 text-base ">
               Email :
             </label>
             <input
@@ -361,13 +284,11 @@ export default function PostAJob() {
               id="email"
               className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
               placeholder="enter contact email for the job"
+              required
             />
-            {error.email && (
-              <p className="text-sm text-red-500">{error.email}</p>
-            )}
           </div>
           <div className="w-full mb-4 flex flex-col items-start justify-center">
-            <label htmlFor="jobva" className="mb-1 text-base font-semibold">
+            <label htmlFor="job_vacancy" className="mb-1 text-base ">
               Number of vacancies available :
             </label>
             <input
@@ -375,13 +296,11 @@ export default function PostAJob() {
                 setFormData({ ...formData, job_vacancy: e.target.value })
               }
               type="number"
-              id="jobva"
+              id="job_vacancy"
               className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
               placeholder="enter number of vacancies available for the job"
+              required
             />
-            {error.job_vacancy && (
-              <p className="text-sm text-red-500">{error.job_vacancy}</p>
-            )}
           </div>
 
           {/* <div className="my-7">
@@ -426,14 +345,26 @@ export default function PostAJob() {
           </div> */}
           {/* -------------------------- lemonsqueezy -------------------------- */}
           {/* <SelectItemForPayment formData={formData} /> */}
-          <button
+          {/* <button
             type="submit"
-            className="w-full my-5 py-2 rounded bg-indigo-600 text-white font-semibold"
+            className="w-full my-5 py-2 rounded bg-indigo-600 text-white"
           >
             Submit
-          </button>
+          </button> */}
+          <Link
+            href={{
+              pathname: "/frontend/payment",
+              // query: formData, // the data
+              query: {
+                search: formData,
+              },
+            }}
+          >
+            Proceed to payment
+          </Link>
         </form>
       </div>
+      {/* <PaymentPage formData={formData} /> */}
       <ToastContainer />
     </>
   );

@@ -53,15 +53,15 @@ export default function ApplicationsDetail() {
                             </div>
                             <div className='flex flex-col md:flex-row justify-center md:justify-around items-center w-full h-32 px-4'>
                                 <div className='flex py-2'>
-                                    <h1 className='text-base font-semibold px-2 '>Name</h1>
+                                    <h1 className='text-base  px-2 '>Name</h1>
                                     <p className='text-sm px-2'>{data?.data?.name}</p>
                                 </div>
                                 <div className='flex py-2'>
-                                    <h1 className='text-base font-semibold px-2 '>Email</h1>
+                                    <h1 className='text-base  px-2 '>Email</h1>
                                     <p className='text-sm px-2'>{data?.data?.email}</p>
                                 </div>
                                 <div className='flex py-2'>
-                                    <h1 className='text-base font-semibold px-2 '>Application Status</h1>
+                                    <h1 className='text-base  px-2 '>Application Status</h1>
                                     <p className='text-sm px-2 uppercase font-extrabold'>{data?.data?.status}</p>
                                 </div>
                             </div>
