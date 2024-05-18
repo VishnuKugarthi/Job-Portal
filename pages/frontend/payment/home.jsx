@@ -42,11 +42,19 @@ export default function PaymentComponent({ formData }) {
         src="https://assets.lemonsqueezy.com/lemon.js"
         onLoad={lemonLoaded}
       ></Script>
-      <a
+      {/* <a
         href="https://dassets.lemonsqueezy.com/buy/fc06ef7f-a9af-4519-94b5-aff96138c988?embed=1"
         class="lemonsqueezy-button"
       >
         Buy Single Job Posting - test
+      </a> */}
+      <a
+        href={process.env.NEXT_PUBLIC_PROMOTE_PAYMENT_14_URL}
+        class="lemonsqueezy-button my-5 py-2 px-20 rounded bg-indigo-600 text-white"
+        type="submit"
+      >
+        Pay ${formData.payment_default + formData.payment_promote} to submit the
+        Job
       </a>
     </>
   );

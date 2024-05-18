@@ -13,6 +13,7 @@ import LoadLemonJs from "./payment/loadLemonJs";
 import SelectItemForPayment from "./payment/home";
 import { boolean } from "joi";
 import PaymentPage from "./payment/home";
+import Accordion from "./payment/accordion";
 
 export default function PostAJob() {
   const user = useSelector((state) => state.User.userData);
@@ -354,8 +355,14 @@ export default function PostAJob() {
                   type="radio"
                   id="job_promote_7"
                   name="Job promote"
-                  value="Promote the job post for 7 days"
+                  value={20}
                   className="w-4 h-4 mr-1 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300 dark:focus:ring-indigo-600"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      payment_promote: parseInt(e.target.value, 10),
+                    })
+                  }
                 />
                 <label for="html">
                   $20 - Promote the job post for 7 days by adding it to the{" "}
@@ -367,8 +374,14 @@ export default function PostAJob() {
                   type="radio"
                   id="job_promote_14"
                   name="Job promote"
-                  value="Promote the job post for 14 days"
+                  value={30}
                   className="w-4 h-4 mr-1 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300 dark:focus:ring-indigo-600"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      payment_promote: parseInt(e.target.value, 10),
+                    })
+                  }
                 />
                 <label for="html">
                   $30 - Promote the job post for 14 days by adding it to the{" "}
@@ -377,16 +390,40 @@ export default function PostAJob() {
               </div>
             </div>
           </div>
+
+          {/* <div className="mt-8">
+            <Accordion
+              title="View the complete breakup"
+              content={
+                <div>
+                  <div className="flex flex-col justify-between">
+
+                  </div>
+                </div>
+              }
+            />
+          </div> */}
+
           {/* Payment selection ends here */}
-          <button
+          {/* <button
             type="submit"
             className="w-full my-5 py-2 rounded bg-indigo-600 text-white"
           >
-            Pay ${amount} to submit the Job
-          </button>
+            Pay ${formData.payment_default + formData.payment_promote} to submit
+            the Job
+          </button> */}
+          {/* <a
+            href="https://dassets.lemonsqueezy.com/buy/fc06ef7f-a9af-4519-94b5-aff96138c988?embed=1"
+            class="lemonsqueezy-button my-5 py-2 px-20 rounded bg-indigo-600 text-white"
+            type="submit"
+          >
+            Pay ${formData.payment_default + formData.payment_promote} to submit
+            the Job
+          </a> */}
+          <PaymentPage formData={formData} />
         </form>
       </div>
-      {/* <PaymentPage formData={formData} /> */}
+
       <ToastContainer />
     </>
   );
