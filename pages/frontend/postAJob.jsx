@@ -10,13 +10,14 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import PaymentOverlay from "./payment/loadLemonJs";
 import LoadLemonJs from "./payment/loadLemonJs";
-import SelectItemForPayment from "./payment/page";
+import SelectItemForPayment from "./payment/home";
 import { boolean } from "joi";
-import PaymentPage from "./payment/page";
+import PaymentPage from "./payment/home";
 
 export default function PostAJob() {
   const user = useSelector((state) => state.User.userData);
   // const router = useRouter();
+  const [amount, setAmount] = useState(49);
 
   console.log(`user?._id = ${JSON.stringify(user)}, ${user?.email}`);
 
@@ -44,6 +45,8 @@ export default function PostAJob() {
     job_type: "",
     job_experience: "",
     job_vacancy: 0,
+    payment_default: 49,
+    payment_promote: 0,
   });
   // const [error, setError] = useState({
   //   user: "",
@@ -92,6 +95,9 @@ export default function PostAJob() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("formData");
+    console.log(formData);
 
     // const res = await post_job(formData);
     // if (res.success) {
@@ -303,65 +309,81 @@ export default function PostAJob() {
             />
           </div>
 
-          {/* <div className="my-7">
-            <fieldset>
-              <legend>Select </legend>
+          {/* Payment selection starts here */}
+          <div className="mt-5">
+            <h1 className="text-md mt-4 py-2">
+              Select where you want to display your Job post.
+            </h1>
 
-              <input
-                id="draft"
-                className="peer/draft mr-1"
-                type="radio"
-                name="status"
-                checked
-              />
-              <label
-                for="draft"
-                className="peer-checked/draft:text-sky-500 mr-4"
-              >
-                $99
-              </label>
-
-              <input
-                id="published"
-                className="peer/published mr-1"
-                type="radio"
-                name="status"
-              />
-              <label
-                for="published"
-                className="peer-checked/published:text-sky-500"
-              >
-                $129
-              </label>
-
-              <div className="hidden peer-checked/draft:block">
-                Drafts are only visible to administrators.
+            <div className="flex flex-col">
+              <div>
+                <input
+                  id="remember"
+                  aria-describedby="remember"
+                  type="checkbox"
+                  className="w-4 h-4 mr-2 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300 dark:focus:ring-indigo-600"
+                  defaultChecked
+                  disabled
+                  value={49}
+                  // onChange={(e) =>
+                  //   setFormData({
+                  //     ...formData,
+                  //     payment_default: 49,
+                  //   })
+                  // }
+                  required
+                />
+                <label htmlFor="remember">
+                  $49 - The Job post will be displayed for 30 days on{" "}
+                  <strong>Available Jobs</strong> section.
+                </label>
               </div>
-              <div className="hidden peer-checked/published:block">
-                Your post will be publicly visible on your site.
-              </div>
-            </fieldset>
+            </div>
+          </div>
 
-          </div> */}
-          {/* -------------------------- lemonsqueezy -------------------------- */}
-          {/* <SelectItemForPayment formData={formData} /> */}
-          {/* <button
+          {/* Actively Recruiting */}
+          <div className="my-5">
+            <h1 className="text-md mt-4 py-2">
+              🔥🔥 Looking to fill this position soon? Then maybe it's time to
+              promote it!
+            </h1>
+
+            <div className="flex flex-col">
+              <div>
+                <input
+                  type="radio"
+                  id="job_promote_7"
+                  name="Job promote"
+                  value="Promote the job post for 7 days"
+                  className="w-4 h-4 mr-1 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300 dark:focus:ring-indigo-600"
+                />
+                <label for="html">
+                  $20 - Promote the job post for 7 days by adding it to the{" "}
+                  <strong>Actively Recruiting</strong> section.
+                </label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="job_promote_14"
+                  name="Job promote"
+                  value="Promote the job post for 14 days"
+                  className="w-4 h-4 mr-1 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300 dark:focus:ring-indigo-600"
+                />
+                <label for="html">
+                  $30 - Promote the job post for 14 days by adding it to the{" "}
+                  <strong>Actively Recruiting</strong> section.
+                </label>
+              </div>
+            </div>
+          </div>
+          {/* Payment selection ends here */}
+          <button
             type="submit"
             className="w-full my-5 py-2 rounded bg-indigo-600 text-white"
           >
-            Submit
-          </button> */}
-          <Link
-            href={{
-              pathname: "/frontend/payment",
-              // query: formData, // the data
-              query: {
-                search: formData,
-              },
-            }}
-          >
-            Proceed to payment
-          </Link>
+            Pay ${amount} to submit the Job
+          </button>
         </form>
       </div>
       {/* <PaymentPage formData={formData} /> */}

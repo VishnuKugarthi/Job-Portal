@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
-export default function PaymentPage({ formData }) {
+export default function PaymentComponent({ formData }) {
   console.log("formData from post a job page", formData);
   console.log(formData);
 

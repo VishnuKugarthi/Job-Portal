@@ -99,7 +99,7 @@ export default function NavBar() {
             Home
           </Link>
           <Link
-            href={"/frontend/postAJob"}
+            href={"/frontend/postajob"}
             className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
           >
             Post a Job
@@ -190,7 +190,7 @@ export default function NavBar() {
                     View Jobs
                   </Link>
                   <Link
-                    href={"/frontend/postAJob"}
+                    href={"/frontend/postajob"}
                     onClick={() => setIsOpen(false)}
                     className="px-3 m-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
                   >
