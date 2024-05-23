@@ -1,8 +1,8 @@
-import NavBar from "@/components/NavBar";
-import React from "react";
-import { useSelector } from "react-redux";
+import NavBar from '@/components/NavBar';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import JobsCard from "@/components/JobsCard";
+import JobsCard from '@/components/JobsCard';
 
 export default function DisplayJobs() {
   const JobData = useSelector((state) => state?.Job?.JobData) || [];

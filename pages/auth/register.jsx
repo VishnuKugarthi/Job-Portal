@@ -1,36 +1,36 @@
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { register_me } from "@/Services/auth";
-import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
-import NavBar from "@/components/NavBar";
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { register_me } from '@/Services/auth';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
+import NavBar from '@/components/NavBar';
 
 export default function Register() {
   const router = useRouter();
 
   useEffect(() => {
-    if (Cookies.get("token")) {
-      router.push("/");
+    if (Cookies.get('token')) {
+      router.push('/');
     }
   }, [router]);
 
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [error, setError] = useState({ email: "", password: "", name: "" });
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [error, setError] = useState({ email: '', password: '', name: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email) {
-      setError({ ...error, email: "Email Field is Required" });
+      setError({ ...error, email: 'Email Field is Required' });
       return;
     }
     if (!formData.password) {
-      setError({ ...error, password: "Password Field is required" });
+      setError({ ...error, password: 'Password Field is required' });
       return;
     }
     if (!formData.name) {
-      setError({ ...error, name: "Name Field is required" });
+      setError({ ...error, name: 'Name Field is required' });
       return;
     }
 
@@ -38,7 +38,7 @@ export default function Register() {
     if (data.success) {
       toast.success(data.message);
       setTimeout(() => {
-        router.push("/auth/login");
+        router.push('/auth/login');
       }, 2000);
     } else {
       toast.error(data.message);
@@ -134,7 +134,7 @@ export default function Register() {
                   Sign Up
                 </button>
                 <p className="text-sm font-light text-gray-500 ">
-                  Already have an account{" "}
+                  Already have an account{' '}
                   <Link
                     href="/auth/login"
                     className="font-medium text-indigo-600 hover:underline "

@@ -1,4 +1,4 @@
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
 // post job api
 
@@ -7,18 +7,18 @@ export const post_job = async (formData) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/postAJob`,
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${Cookies.get("token")}`,
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Cookies.get('token')}`,
         },
         body: JSON.stringify(formData),
-      }
+      },
     );
     const data = res.json();
     return data;
   } catch (error) {
-    console.log("error in post job (service) => ", error);
+    console.log('error in post job (service) => ', error);
   }
 };
 
@@ -28,16 +28,16 @@ export const get_job = async () => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/getAllJobs`,
       {
-        method: "GET",
+        method: 'GET',
         headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
+          Authorization: `Bearer ${Cookies.get('token')}`,
         },
-      }
+      },
     );
     const data = res.json();
     return data;
   } catch (error) {
-    console.log("error in getting job (service) => ", error);
+    console.log('error in getting job (service) => ', error);
   }
 };
 
@@ -47,14 +47,14 @@ export const get_specified_job = async (id) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/getSpecifiedJob?id=${id}`,
       {
-        method: "GET",
-        headers: { Authorization: `Bearer ${Cookies.get("token")}` },
-      }
+        method: 'GET',
+        headers: { Authorization: `Bearer ${Cookies.get('token')}` },
+      },
     );
     const data = res.json();
     return data;
   } catch (error) {
-    console.log("error in getting  specified job (service) => ", error);
+    console.log('error in getting  specified job (service) => ', error);
   }
 };
 
@@ -65,15 +65,15 @@ export const apply_job = async (formData) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/applyJob`,
       {
-        method: "POST",
-        headers: { Authorization: `Bearer ${Cookies.get("token")}` },
+        method: 'POST',
+        headers: { Authorization: `Bearer ${Cookies.get('token')}` },
         body: formData,
-      }
+      },
     );
     const data = await res.json();
     return data;
   } catch (error) {
-    console.log("error in apply job (service) => ", error);
+    console.log('error in apply job (service) => ', error);
   }
 };
 
@@ -84,14 +84,14 @@ export const get_my_applied_job = async (id) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/getAppliedJobs?id=${id}`,
       {
-        method: "GET",
-        headers: { Authorization: `Bearer ${Cookies.get("token")}` },
-      }
+        method: 'GET',
+        headers: { Authorization: `Bearer ${Cookies.get('token')}` },
+      },
     );
     const data = res.json();
     return data;
   } catch (error) {
-    console.log("error in getting  getting my all job (service) => ", error);
+    console.log('error in getting  getting my all job (service) => ', error);
   }
 };
 
@@ -102,14 +102,14 @@ export const get_my_posted_job = async (id) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/getPostedJobs?id=${id}`,
       {
-        method: "GET",
-        headers: { Authorization: `Bearer ${Cookies.get("token")}` },
-      }
+        method: 'GET',
+        headers: { Authorization: `Bearer ${Cookies.get('token')}` },
+      },
     );
     const data = res.json();
     return data;
   } catch (error) {
-    console.log("error in   getting my all job (service) => ", error);
+    console.log('error in   getting my all job (service) => ', error);
   }
 };
 
@@ -120,16 +120,16 @@ export const get_all_applications = async (id) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/getAllApplicationsOfSpecifiedJob?id=${id}`,
       {
-        method: "GET",
-        headers: { Authorization: `Bearer ${Cookies.get("token")}` },
-      }
+        method: 'GET',
+        headers: { Authorization: `Bearer ${Cookies.get('token')}` },
+      },
     );
     const data = res.json();
     return data;
   } catch (error) {
     console.log(
-      "error in   getting my all application of specified jobs (service) => ",
-      error
+      'error in   getting my all application of specified jobs (service) => ',
+      error,
     );
   }
 };
@@ -141,20 +141,20 @@ export const change_application_status = async (formData) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/responseOfApplication`,
       {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${Cookies.get("token")}`,
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Cookies.get('token')}`,
         },
         body: JSON.stringify(formData),
-      }
+      },
     );
     const data = res.json();
     return data;
   } catch (error) {
     console.log(
-      "error in   getting my all application of specified jobs (service) => ",
-      error
+      'error in   getting my all application of specified jobs (service) => ',
+      error,
     );
   }
 };
@@ -164,16 +164,16 @@ export const get_application_details = async (id) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/job/getApplicationDetail?id=${id}`,
       {
-        method: "GET",
-        headers: { Authorization: `Bearer ${Cookies.get("token")}` },
-      }
+        method: 'GET',
+        headers: { Authorization: `Bearer ${Cookies.get('token')}` },
+      },
     );
     const data = res.json();
     return data;
   } catch (error) {
     console.log(
-      "error in   getting my all application of specified jobs (service) => ",
-      error
+      'error in   getting my all application of specified jobs (service) => ',
+      error,
     );
   }
 };

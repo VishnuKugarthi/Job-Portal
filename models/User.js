@@ -10,11 +10,11 @@
 
 // export default User;
 
-import Airtable from "airtable";
+import Airtable from 'airtable';
 
 // Initialize Airtable with your API key and base ID
 const base = new Airtable({ apiKey: process.env.AIRTABLE_ACCESS_TOKEN }).base(
-  process.env.AIRTABLE_BASE_NAME
+  process.env.AIRTABLE_BASE_NAME,
 );
 
 // Define the Airtable schema
@@ -29,10 +29,10 @@ const User = {
   create: async (userData) => {
     try {
       // Insert a new record into the Airtable table
-      const createdRecord = await base("Users").create(userData);
+      const createdRecord = await base('Users').create(userData);
       return createdRecord;
     } catch (error) {
-      console.error("Error creating user:", error);
+      console.error('Error creating user:', error);
       throw error;
     }
   },

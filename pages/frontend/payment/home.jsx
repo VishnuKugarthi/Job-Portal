@@ -1,11 +1,11 @@
-import Script from "next/script";
-import { post_job } from "@/Services/job";
-import React, { useEffect } from "react";
-import { toast } from "react-toastify";
-import { useRouter } from "next/router";
+import Script from 'next/script';
+import { post_job } from '@/Services/job';
+import React, { useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 export default function PaymentComponent({ formData }) {
-  console.log("formData from post a job page", formData);
+  console.log('formData from post a job page', formData);
   console.log(formData);
 
   const router = useRouter();
@@ -17,11 +17,11 @@ export default function PaymentComponent({ formData }) {
       eventHandler: async (event) => {
         // Do whatever you want with this event data
 
-        console.log("LemonSqueezy event");
+        console.log('LemonSqueezy event');
         console.log(event);
 
-        if (event.event === "Checkout.Success") {
-          router.push("/frontend/displayJobs");
+        if (event.event === 'Checkout.Success') {
+          router.push('/frontend/displayJobs');
           // const res = await post_job(formData);
           // if (res.success) {
           //   toast.success(res.message);

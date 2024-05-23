@@ -6,7 +6,9 @@ const validateToken = (req, res, next) => {
   console.log(token);
 
   if (!token) {
-    return res.status(401).json({ success: false, message: 'Unauthorized Please login' });
+    return res
+      .status(401)
+      .json({ success: false, message: 'Unauthorized Please login' });
   }
 
   try {
@@ -14,7 +16,9 @@ const validateToken = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
-    return res.status(401).json({ success: false, message: 'Unauthorized Please login' });
+    return res
+      .status(401)
+      .json({ success: false, message: 'Unauthorized Please login' });
   }
 };
 

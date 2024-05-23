@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 
-const path = require("path");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const nextConfig = {
   images: {
-    domains: ["api.dicebear.com", "xsgames.co"],
+    domains: ['api.dicebear.com', 'xsgames.co'],
   },
   reactStrictMode: true,
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
@@ -16,12 +16,12 @@ const nextConfig = {
           {
             from: path.join(
               __dirname,
-              "./node_modules/pdfjs-dist/build/pdf.worker.min.mjs"
+              './node_modules/pdfjs-dist/build/pdf.worker.min.mjs',
             ),
-            to: path.join(__dirname, "dist"),
+            to: path.join(__dirname, 'dist'),
           },
         ],
-      })
+      }),
     );
 
     return config;

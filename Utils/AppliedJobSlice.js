@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   appliedJob: [],
@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export const appliedJobSlice = createSlice({
-  name: "AppliedJob",
+  name: 'AppliedJob',
   initialState,
   reducers: {
     setAppliedJob: (state, action) => {

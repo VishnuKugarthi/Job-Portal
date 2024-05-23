@@ -1,51 +1,51 @@
-import NavBar from "@/components/NavBar";
-import { forget_password } from "@/Services/auth";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import NavBar from '@/components/NavBar';
+import { forget_password } from '@/Services/auth';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ForgetPassword() {
   const Router = useRouter();
 
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
   const [error, setError] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email) {
-      setError({ ...error, email: "Email Field is Required" });
+      setError({ ...error, email: 'Email Field is Required' });
       return;
     }
     if (!formData.password) {
-      setError({ ...error, password: "Password Field is required" });
+      setError({ ...error, password: 'Password Field is required' });
       return;
     }
     if (!formData.confirmPassword) {
       setError({
         ...error,
-        confirmPassword: "Confirm Password Field is required",
+        confirmPassword: 'Confirm Password Field is required',
       });
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      toast.error("Password and Confirm Password does not match");
+      toast.error('Password and Confirm Password does not match');
     }
 
     const res = await forget_password(formData);
     if (res.success) {
       toast.success(res.message);
       setTimeout(() => {
-        Router.push("/auth/login");
+        Router.push('/auth/login');
       }, 1000);
     } else {
       toast.error(res.message);

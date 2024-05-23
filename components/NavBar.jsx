@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import { BiLogOut } from "react-icons/bi";
-import Cookies from "js-cookie";
-import { useRouter } from "next/router";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { setUserData } from "@/Utils/UserSlice";
-import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
-import { signOut } from "next-auth/react";
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
+import { BiLogOut } from 'react-icons/bi';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { setUserData } from '@/Utils/UserSlice';
+import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
+import { signOut } from 'next-auth/react';
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -16,10 +16,10 @@ export default function NavBar() {
   useEffect(() => {
     dispatch(
       setUserData(
-        localStorage.getItem("user")
-          ? JSON.parse(localStorage.getItem("user"))
-          : null
-      )
+        localStorage.getItem('user')
+          ? JSON.parse(localStorage.getItem('user'))
+          : null,
+      ),
     );
   }, [dispatch]);
 
@@ -40,10 +40,10 @@ export default function NavBar() {
         }
       };
 
-      document.addEventListener("click", handleClick, true);
+      document.addEventListener('click', handleClick, true);
 
       return () => {
-        document.removeEventListener("click", handleClick, true);
+        document.removeEventListener('click', handleClick, true);
       };
     }, [ref]);
 
@@ -51,7 +51,7 @@ export default function NavBar() {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       if (window.scrollY > 20) {
         isScrolled(true);
       } else {
@@ -59,7 +59,7 @@ export default function NavBar() {
       }
     });
     return () => {
-      window.removeEventListener("scroll", () => {
+      window.removeEventListener('scroll', () => {
         if (window.scrollY > 20) {
           isScrolled(true);
         } else {
@@ -71,7 +71,7 @@ export default function NavBar() {
 
   const handleLogout = async () => {
     // Cookies.remove("token");
-    console.log("Logout clicked!!!!");
+    console.log('Logout clicked!!!!');
     // localStorage.removeItem("user");
     Router.reload();
   };
@@ -85,7 +85,7 @@ export default function NavBar() {
     <>
       <div
         className={`w-full ${
-          scrolled ? "bg-indigo-600/70" : "bg-indigo-600"
+          scrolled ? 'bg-indigo-600/70' : 'bg-indigo-600'
         } px-6 h-20 bg-indigo-600 text-white flex items-center justify-between fixed top-0 left-0 z-50`}
       >
         <div className="px-2 h-full flex items-center justify-center">
@@ -93,37 +93,37 @@ export default function NavBar() {
         </div>
         <div className="px-2 h-full hidden items-center justify-center lg:flex">
           <Link
-            href={"/"}
+            href={'/'}
             className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
           >
             Home
           </Link>
           <Link
-            href={"/frontend/postajob"}
+            href={'/frontend/postajob'}
             className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
           >
             Post a Job
           </Link>
           <Link
-            href={"/frontend/displayJobs"}
+            href={'/frontend/displayJobs'}
             className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
           >
             View Jobs
           </Link>
           <Link
-            href={"/frontend/postedJob"}
+            href={'/frontend/postedJob'}
             className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
           >
             Posted Jobs
           </Link>
           <Link
-            href={"/frontend/dashboard"}
+            href={'/frontend/dashboard'}
             className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
           >
             Dashboard
           </Link>
           <Link
-            href={"/"}
+            href={'/'}
             className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
           >
             Contact
@@ -144,7 +144,7 @@ export default function NavBar() {
           ) : (
             <>
               <Link
-                href={"/auth/login"}
+                href={'/auth/login'}
                 className="px-4 py-2 border border-white rounded capitalize mx-4   transition-all duration-700 hover:bg-white  text-base hover:text-indigo-600"
               >
                 Login
@@ -167,7 +167,7 @@ export default function NavBar() {
           >
             <div className="px-2 h-full flex items-center justify-center flex-col py-2 ">
               <Link
-                href={"/"}
+                href={'/'}
                 onClick={() => setIsOpen(false)}
                 className="px-3  m-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
               >
@@ -177,27 +177,27 @@ export default function NavBar() {
                 onClick={() => setOpenJobs((state) => !state)}
                 className="px-3  m-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize flex items-center justify-center"
               >
-                Jobs {openJobs ? <AiFillCaretUp /> : <AiFillCaretDown />}{" "}
+                Jobs {openJobs ? <AiFillCaretUp /> : <AiFillCaretDown />}{' '}
               </button>
 
               {openJobs && (
                 <>
                   <Link
-                    href={"/frontend/displayJobs"}
+                    href={'/frontend/displayJobs'}
                     onClick={() => setIsOpen(false)}
                     className="px-3 m-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
                   >
                     View Jobs
                   </Link>
                   <Link
-                    href={"/frontend/postajob"}
+                    href={'/frontend/postajob'}
                     onClick={() => setIsOpen(false)}
                     className="px-3 m-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
                   >
                     Post a Job
                   </Link>
                   <Link
-                    href={"/frontend/postedJob"}
+                    href={'/frontend/postedJob'}
                     onClick={() => setIsOpen(false)}
                     className="px-3 m-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
                   >
@@ -206,14 +206,14 @@ export default function NavBar() {
                 </>
               )}
               <Link
-                href={"/frontend/dashboard"}
+                href={'/frontend/dashboard'}
                 onClick={() => setIsOpen(false)}
                 className="px-3 m-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
               >
                 Dashboard
               </Link>
               <Link
-                href={"/"}
+                href={'/'}
                 onClick={() => setIsOpen(false)}
                 className="px-3 m-4 text-base font-medium transition-all duration-700 hover:translate-y-2 capitalize"
               >
@@ -233,13 +233,13 @@ export default function NavBar() {
               ) : (
                 <>
                   <Link
-                    href={"/auth/login"}
+                    href={'/auth/login'}
                     className="px-4 py-2 border border-white rounded capitalize mx-4   transition-all duration-700 hover:bg-white  text-base hover:text-indigo-600"
                   >
                     Login
                   </Link>
                   <Link
-                    href={"/auth/register"}
+                    href={'/auth/register'}
                     className="px-4 py-2 border border-white rounded capitalize mx-4   text-indigo-600 bg-white transition-all duration-700 hover:bg-transparent  text-base hover:text-white"
                   >
                     REGISTER

@@ -1,19 +1,19 @@
-import NavBar from "@/components/NavBar";
-import Link from "next/link";
-import Select from "react-select";
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { post_job } from "@/Services/job";
-import { useRouter } from "next/router";
-import Cookies from "js-cookie";
-import PaymentOverlay from "./payment/loadLemonJs";
-import LoadLemonJs from "./payment/loadLemonJs";
-import SelectItemForPayment from "./payment/home";
-import { boolean } from "joi";
-import PaymentPage from "./payment/home";
-import Accordion from "./payment/accordion";
+import NavBar from '@/components/NavBar';
+import Link from 'next/link';
+import Select from 'react-select';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { post_job } from '@/Services/job';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
+import PaymentOverlay from './payment/loadLemonJs';
+import LoadLemonJs from './payment/loadLemonJs';
+import SelectItemForPayment from './payment/home';
+import { boolean } from 'joi';
+import PaymentPage from './payment/home';
+import Accordion from './payment/accordion';
 
 export default function PostAJob() {
   const user = useSelector((state) => state.User.userData);
@@ -36,15 +36,15 @@ export default function PostAJob() {
 
   const [formData, setFormData] = useState({
     user: user?.email,
-    job_title: "",
+    job_title: '',
     salary: 0,
-    email: "",
-    company_name: "",
-    job_location: "",
-    job_description: "",
-    job_mode: "",
-    job_type: "",
-    job_experience: "",
+    email: '',
+    company_name: '',
+    job_location: '',
+    job_description: '',
+    job_mode: '',
+    job_type: '',
+    job_experience: '',
     job_vacancy: 0,
     payment_default: 49,
     payment_promote: 0,
@@ -97,7 +97,7 @@ export default function PostAJob() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("formData");
+    console.log('formData');
     console.log(formData);
 
     // const res = await post_job(formData);
@@ -112,35 +112,35 @@ export default function PostAJob() {
   };
 
   const job_mode_options = [
-    { value: "remote", label: "Remote" },
-    { value: "hybrid", label: "Hybrid" },
+    { value: 'remote', label: 'Remote' },
+    { value: 'hybrid', label: 'Hybrid' },
   ];
 
   const job_type_options = [
-    { value: "fulltime", label: "Full time" },
-    { value: "parttime", label: "Part time" },
-    { value: "internship", label: "Internship" },
-    { value: "contract", label: "Contract" },
+    { value: 'fulltime', label: 'Full time' },
+    { value: 'parttime', label: 'Part time' },
+    { value: 'internship', label: 'Internship' },
+    { value: 'contract', label: 'Contract' },
   ];
 
-  console.log("formData");
+  console.log('formData');
   console.log(formData);
 
-  console.log("user?.name");
+  console.log('user?.name');
   console.log(user?.name);
 
   if (
     user?.name == null ||
-    user?.name == "" ||
+    user?.name == '' ||
     user?.name == undefined ||
-    user?.name == "undefined"
+    user?.name == 'undefined'
   ) {
     return (
       <>
         <NavBar />
         <div className="w-full  py-20 flex items-center  justify-center flex-col">
           <div className="my-10">
-            Please <Link href={"/auth/login"}>login</Link> first
+            Please <Link href={'/auth/login'}>login</Link> first
           </div>
         </div>
       </>
@@ -213,7 +213,7 @@ export default function PostAJob() {
               onChange={(e) =>
                 setFormData({ ...formData, job_description: e.target.value })
               }
-              onResize={"none"}
+              onResize={'none'}
               type="text"
               id="job_description"
               className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
@@ -343,7 +343,7 @@ export default function PostAJob() {
                   required
                 />
                 <label htmlFor="remember">
-                  $49 - The Job post will be displayed for 30 days on{" "}
+                  $49 - The Job post will be displayed for 30 days on{' '}
                   <strong>Available Jobs</strong> section.
                 </label>
               </div>
@@ -373,7 +373,7 @@ export default function PostAJob() {
                   }
                 />
                 <label for="html">
-                  $20 - Promote the job post for 7 days by adding it to the{" "}
+                  $20 - Promote the job post for 7 days by adding it to the{' '}
                   <strong>Actively Recruiting</strong> section.
                 </label>
               </div>
@@ -392,7 +392,7 @@ export default function PostAJob() {
                   }
                 />
                 <label for="html">
-                  $30 - Promote the job post for 14 days by adding it to the{" "}
+                  $30 - Promote the job post for 14 days by adding it to the{' '}
                   <strong>Actively Recruiting</strong> section.
                 </label>
               </div>

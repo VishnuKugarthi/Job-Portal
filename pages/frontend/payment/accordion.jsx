@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from "react";
-import { BiMinus, BiPlus } from "react-icons/bi";
+import React, { useState } from 'react';
+import { BiMinus, BiPlus } from 'react-icons/bi';
 
 const Accordion = ({ title, content }) => {
   const [isOpen, setIsOpen] = useState(false);

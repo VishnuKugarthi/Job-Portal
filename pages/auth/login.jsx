@@ -1,36 +1,36 @@
-import React, { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import { signIn, signOut, useSession } from "next-auth/react";
-import "react-toastify/dist/ReactToastify.css";
-import Link from "next/link";
-import Router from "next/router";
-import Cookies from "js-cookie";
-import { useDispatch } from "react-redux";
-import { BiLogoGoogle } from "react-icons/bi";
-import NavBar from "@/components/NavBar";
-import { setUserData } from "@/Utils/UserSlice";
+import React, { useEffect, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
+import Router from 'next/router';
+import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux';
+import { BiLogoGoogle } from 'react-icons/bi';
+import NavBar from '@/components/NavBar';
+import { setUserData } from '@/Utils/UserSlice';
 
 export default function Login() {
   const dispatch = useDispatch();
   const { data: session } = useSession();
 
   useEffect(() => {
-    if (localStorage.getItem("user")) {
-      Router.push("/");
+    if (localStorage.getItem('user')) {
+      Router.push('/');
     }
   }, []);
 
   if (session) {
-    localStorage.setItem("user", JSON.stringify(session?.user));
+    localStorage.setItem('user', JSON.stringify(session?.user));
 
     dispatch(
       setUserData(
-        localStorage.getItem("user")
-          ? JSON.parse(localStorage.getItem("user"))
-          : null
-      )
+        localStorage.getItem('user')
+          ? JSON.parse(localStorage.getItem('user'))
+          : null,
+      ),
     );
-    Router.push("/");
+    Router.push('/');
   }
 
   return (
@@ -56,7 +56,7 @@ export default function Login() {
                 ) : (
                   <button
                     className="cursor-pointer text-lg hover:text-green-700 transition-all duration-500 w-full bg-indigo-600 text-gray-100 hover:bg-gray-100 shadow-md border border-gray-300 py-2 px-4 flex items-center justify-center rounded-md text-center"
-                    onClick={() => signIn("google")}
+                    onClick={() => signIn('google')}
                   >
                     <BiLogoGoogle className="text-3xl" />
                     <span className="ml-2">Sign in with Google</span>

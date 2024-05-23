@@ -1,22 +1,22 @@
-import Intro from "@/components/Intro";
-import NavBar from "@/components/NavBar";
-import Head from "next/head";
-import { useDispatch } from "react-redux";
-import { setUserToken, setUserData } from "@/Utils/UserSlice";
-import { useEffect } from "react";
-import Cookies from "js-cookie";
-import { toast } from "react-toastify";
-import useSWR from "swr";
-import { get_job } from "@/Services/job";
-import { setJobData } from "@/Utils/JobSlice";
-import { InfinitySpin } from "react-loader-spinner";
-import LoadLemonJs from "./frontend/payment/loadLemonJs";
+import Head from 'next/head';
+import { useDispatch } from 'react-redux';
+import { setUserToken, setUserData } from '@/Utils/UserSlice';
+import { useEffect } from 'react';
+import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
+import useSWR from 'swr';
+import { get_job } from '@/Services/job';
+import { setJobData } from '@/Utils/JobSlice';
+import { InfinitySpin } from 'react-loader-spinner';
+import Intro from '@/components/Intro';
+import NavBar from '@/components/NavBar';
+import LoadLemonJs from './frontend/payment/loadLemonJs';
 
 export default function Home() {
   const dispatch = useDispatch();
   // const token = Cookies.get("token");
 
-  const { data, error, isLoading } = useSWR("/getAllJobs", get_job);
+  const { data, error, isLoading } = useSWR('/getAllJobs', get_job);
 
   useEffect(() => {
     if (data) dispatch(setJobData(data?.data));

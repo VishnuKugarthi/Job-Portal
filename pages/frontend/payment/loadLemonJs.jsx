@@ -1,6 +1,6 @@
 // import { post_job } from "@/Services/job";
-import Script from "next/script";
-import React from "react";
+import Script from 'next/script';
+import React from 'react';
 // import { toast, ToastContainer } from "react-toastify";
 // import { useRouter } from "next/router";
 

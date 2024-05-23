@@ -11,9 +11,9 @@
 
 // export default connectDB;
 
-import Airtable from "airtable";
+import Airtable from 'airtable';
 
-console.log("process.env.AIRTABLE_BASE_NAME");
+console.log('process.env.AIRTABLE_BASE_NAME');
 console.log(process.env.AIRTABLE_BASE_NAME);
 
 // Initialize Airtable with your API key and base ID
@@ -25,16 +25,16 @@ export const base = new Airtable({
 const connectDB = async () => {
   try {
     // Perform a simple query to check if the connection is successful
-    await base("Users")
+    await base('Users')
       .select({
         maxRecords: 1,
-        view: "Grid view",
+        view: 'Grid view',
       })
       .firstPage();
 
-    console.log("**** Database connected successfully ****");
+    console.log('**** Database connected successfully ****');
   } catch (error) {
-    console.error("Error connecting to Airtable:", error.message);
+    console.error('Error connecting to Airtable:', error.message);
   }
 };
 
