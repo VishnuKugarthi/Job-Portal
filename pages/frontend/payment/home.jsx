@@ -21,15 +21,16 @@ export default function PaymentComponent({ formData }) {
         console.log(event);
 
         if (event.event === "Checkout.Success") {
-          const res = await post_job(formData);
-          if (res.success) {
-            toast.success(res.message);
-            setTimeout(() => {
-              router.push("/frontend/displayJobs");
-            }, 1000);
-          } else {
-            toast.error(res.message);
-          }
+          router.push("/frontend/displayJobs");
+          // const res = await post_job(formData);
+          // if (res.success) {
+          //   toast.success(res.message);
+          //   setTimeout(() => {
+          //     router.push("/frontend/displayJobs");
+          //   }, 1000);
+          // } else {
+          //   toast.error(res.message);
+          // }
         }
       },
     });

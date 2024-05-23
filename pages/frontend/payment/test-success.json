@@ -1,0 +1,109 @@
+{
+    "cart_id": "39a1bfea-4bbc-404c-b0ca-9c3fb36eda32",
+    "status": "success",
+    "message": null,
+    "order": {
+        "meta": {
+            "test_mode": true
+        },
+        "data": {
+            "type": "orders",
+            "id": "2709365",
+            "attributes": {
+                "store_id": 65718,
+                "customer_id": 2883959,
+                "identifier": "39a1bfea-4bbc-404c-b0ca-9c3fb36eda32",
+                "order_number": 6571810,
+                "user_name": "Jason Bourne",
+                "user_email": "test@gmail.com",
+                "currency": "USD",
+                "currency_rate": "1.00000000",
+                "tax_name": "Sales Tax",
+                "tax_rate": "0.00",
+                "tax_inclusive": false,
+                "status": "paid",
+                "status_formatted": "Paid",
+                "refunded": false,
+                "refunded_at": null,
+                "subtotal": 7900,
+                "discount_total": 0,
+                "tax": 0,
+                "setup_fee": 0,
+                "total": 7900,
+                "subtotal_usd": 7900,
+                "discount_total_usd": 0,
+                "tax_usd": 0,
+                "setup_fee_usd": 0,
+                "total_usd": 7900,
+                "subtotal_formatted": "$79.00",
+                "discount_total_formatted": "$0.00",
+                "tax_formatted": "$0.00",
+                "setup_fee_formatted": "$0.00",
+                "total_formatted": "$79.00",
+                "first_order_item": {
+                    "id": 2668677,
+                    "order_id": 2709365,
+                    "product_id": 272811,
+                    "variant_id": 384351,
+                    "price_id": 555497,
+                    "product_name": "Single Job Posting for 30 days + Promote it for 14 days",
+                    "variant_name": "Default",
+                    "price": 7900,
+                    "quantity": 1,
+                    "created_at": "2024-05-18T13:44:30.000000Z",
+                    "updated_at": "2024-05-18T13:44:30.000000Z",
+                    "test_mode": true
+                },
+                "urls": {
+                    "receipt": "https:\/\/app.lemonsqueezy.com\/my-orders\/39a1bfea-4bbc-404c-b0ca-9c3fb36eda32?signature=7ceb46e1f252d600dc6a10bcac78468620a0a1062a770a6444e1172cdf1b8503"
+                },
+                "created_at": "2024-05-18T13:44:29.000000Z",
+                "updated_at": "2024-05-18T13:44:30.000000Z",
+                "test_mode": true
+            },
+            "relationships": {
+                "store": {
+                    "links": {
+                        "related": "https:\/\/api.lemonsqueezy.com\/v1\/orders\/2709365\/store",
+                        "self": "https:\/\/api.lemonsqueezy.com\/v1\/orders\/2709365\/relationships\/store"
+                    }
+                },
+                "customer": {
+                    "links": {
+                        "related": "https:\/\/api.lemonsqueezy.com\/v1\/orders\/2709365\/customer",
+                        "self": "https:\/\/api.lemonsqueezy.com\/v1\/orders\/2709365\/relationships\/customer"
+                    }
+                },
+                "order-items": {
+                    "links": {
+                        "related": "https:\/\/api.lemonsqueezy.com\/v1\/orders\/2709365\/order-items",
+                        "self": "https:\/\/api.lemonsqueezy.com\/v1\/orders\/2709365\/relationships\/order-items"
+                    }
+                },
+                "subscriptions": {
+                    "links": {
+                        "related": "https:\/\/api.lemonsqueezy.com\/v1\/orders\/2709365\/subscriptions",
+                        "self": "https:\/\/api.lemonsqueezy.com\/v1\/orders\/2709365\/relationships\/subscriptions"
+                    }
+                },
+                "license-keys": {
+                    "links": {
+                        "related": "https:\/\/api.lemonsqueezy.com\/v1\/orders\/2709365\/license-keys",
+                        "self": "https:\/\/api.lemonsqueezy.com\/v1\/orders\/2709365\/relationships\/license-keys"
+                    }
+                },
+                "discount-redemptions": {
+                    "links": {
+                        "related": "https:\/\/api.lemonsqueezy.com\/v1\/orders\/2709365\/discount-redemptions",
+                        "self": "https:\/\/api.lemonsqueezy.com\/v1\/orders\/2709365\/relationships\/discount-redemptions"
+                    }
+                }
+            },
+            "links": {
+                "self": "https:\/\/api.lemonsqueezy.com\/v1\/orders\/2709365"
+            }
+        }
+    },
+    "buttonUrl": "https:\/\/app.lemonsqueezy.com\/my-orders\/39a1bfea-4bbc-404c-b0ca-9c3fb36eda32?expires=1716126271&signature=e192fc3cfed24c39daa3d26bfa922a282fe1e06f2da0a77bab501fc6e256bf8a",
+    "buttonText": "View Order"
+}

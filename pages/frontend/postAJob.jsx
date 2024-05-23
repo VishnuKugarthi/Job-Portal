@@ -299,14 +299,22 @@ export default function PostAJob() {
               Number of vacancies available :
             </label>
             <input
-              onChange={(e) =>
-                setFormData({ ...formData, job_vacancy: e.target.value })
-              }
+              onChange={(e) => {
+                const value = parseInt(e.target.value, 10);
+                if (value > 0) {
+                  setFormData({ ...formData, job_vacancy: value });
+                }
+                // else {
+                //   alert("Please enter a number greater than zero.");
+                //   e.target.value = "";
+                // }
+              }}
               type="number"
               id="job_vacancy"
               className="w-full py-2 px-3 mb-2 border border-indigo-600 rounded"
               placeholder="enter number of vacancies available for the job"
               required
+              min="1"
             />
           </div>
 
