@@ -1,7 +1,7 @@
 import ConnectDB from '@/DB/connectDB';
 import Job from '@/models/Job';
 
-export default async (req, res) => {
+const GetAllJobsComponent = async (req, res) => {
   await ConnectDB();
   const { method } = req;
   switch (method) {
@@ -27,3 +27,5 @@ const getAllJobs = async (req, res) => {
     });
   }
 };
+
+export default GetAllJobsComponent;

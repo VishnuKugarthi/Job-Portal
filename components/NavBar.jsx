@@ -84,9 +84,7 @@ export default function NavBar() {
   return (
     <>
       <div
-        className={`w-full ${
-          scrolled ? 'bg-indigo-600/70' : 'bg-indigo-600'
-        } px-6 h-20 bg-indigo-600 text-white flex items-center justify-between fixed top-0 left-0 z-50`}
+        className={`w-full px-6 h-14 bg-indigo-600 text-white flex items-center justify-between fixed top-0 left-0 z-50`}
       >
         <div className="px-2 h-full flex items-center justify-center">
           <p className="capitalize  text-lg">JOB-PORTAL</p>

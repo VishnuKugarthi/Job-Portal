@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable import/no-anonymous-default-export */
 import NavBar from '@/components/NavBar';
 import Link from 'next/link';
 import Select from 'react-select';
@@ -14,6 +16,7 @@ import SelectItemForPayment from './payment/home';
 import { boolean } from 'joi';
 import PaymentPage from './payment/home';
 import Accordion from './payment/accordion';
+import LoginFirstUIComponent from './loginFirst';
 
 export default function PostAJob() {
   const user = useSelector((state) => state.User.userData);
@@ -137,12 +140,7 @@ export default function PostAJob() {
   ) {
     return (
       <>
-        <NavBar />
-        <div className="w-full  py-20 flex items-center  justify-center flex-col">
-          <div className="my-10">
-            Please <Link href={'/auth/login'}>login</Link> first
-          </div>
-        </div>
+        <LoginFirstUIComponent />
       </>
     );
   }

@@ -2,7 +2,7 @@ import ConnectDB from '@/DB/connectDB';
 import validateToken from '@/middleware/tokenValidation';
 import AppliedJob from '@/models/ApplyJob';
 
-export default async (req, res) => {
+const GetAllApplicationsOfSpecifiedJobComponent = async (req, res) => {
   await ConnectDB();
   const { method } = req;
   switch (method) {
@@ -35,3 +35,5 @@ const getAllApplicationsOfSpecifiedJob = async (req, res) => {
     });
   }
 };
+
+export default GetAllApplicationsOfSpecifiedJobComponent;

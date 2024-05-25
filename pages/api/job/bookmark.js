@@ -8,7 +8,7 @@ const schema = Joi.object({
   job: Joi.required(),
 });
 
-export default async (req, res) => {
+const Bookmark = async (req, res) => {
   await ConnectDB();
   switch (req.method) {
     case 'POST':
@@ -105,3 +105,5 @@ export const delete_bookmark_job = async (req, res) => {
     });
   }
 };
+
+export default Bookmark;

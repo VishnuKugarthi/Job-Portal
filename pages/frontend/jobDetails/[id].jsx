@@ -3,10 +3,13 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { GoLocation } from 'react-icons/go';
 import { MdCategory, MdEmail } from 'react-icons/md';
-import { BsBriefcaseFill, BsFillBookmarkCheckFill } from 'react-icons/bs';
+import {
+  BsBriefcaseFill,
+  BsFillBookmarkCheckFill,
+  BsFillCalendar2DateFill,
+} from 'react-icons/bs';
 import { AiOutlineArrowRight, AiOutlineDollarCircle } from 'react-icons/ai';
 import { RiUserSearchFill } from 'react-icons/ri';
-import { BsFillCalendar2DateFill } from 'react-icons/bs';
 import { HiOutlineStar } from 'react-icons/hi';
 import { FaUserAstronaut } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';

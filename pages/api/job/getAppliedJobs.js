@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import ConnectDB from '@/DB/connectDB';
 import validateToken from '@/middleware/tokenValidation';
 import ApplyJob from '@/models/ApplyJob';

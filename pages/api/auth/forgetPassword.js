@@ -8,7 +8,7 @@ const schema = Joi.object({
   password: Joi.string().min(8).required(),
 });
 
-export default async (req, res) => {
+const ForgetPassword = async (req, res) => {
   await ConnectDB();
 
   const { email, password } = req.body;
@@ -42,3 +42,5 @@ export default async (req, res) => {
     });
   }
 };
+
+export default ForgetPassword;

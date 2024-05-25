@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import Script from 'next/script';
 import { post_job } from '@/Services/job';
 import React, { useEffect } from 'react';
@@ -49,14 +50,17 @@ export default function PaymentComponent({ formData }) {
       >
         Buy Single Job Posting - test
       </a> */}
-      <a
-        href={process.env.NEXT_PUBLIC_PROMOTE_PAYMENT_14_URL}
-        class="lemonsqueezy-button my-5 py-2 px-20 rounded bg-indigo-600 text-white"
-        type="submit"
-      >
-        Pay ${formData.payment_default + formData.payment_promote} to submit the
-        Job
-      </a>
+
+      <div className="mt-10 w-full">
+        <a
+          href={process.env.NEXT_PUBLIC_PROMOTE_PAYMENT_14_URL}
+          class="lemonsqueezy-button w-full my-5 py-3 px-8 rounded bg-indigo-600 text-white"
+          type="submit"
+        >
+          Pay ${formData.payment_default + formData.payment_promote} to submit
+          the Job
+        </a>
+      </div>
     </>
   );
 }
